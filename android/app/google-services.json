@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "186739224116",
+    "project_id": "origami-app-133e3",
+    "storage_bucket": "origami-app-133e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186739224116:android:566d8010f1e73965e4e461",
+        "android_client_info": {
+          "package_name": "com.example.origami"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUZMrYsdMBvXQCZykLWUfrPuymc1tsPhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
