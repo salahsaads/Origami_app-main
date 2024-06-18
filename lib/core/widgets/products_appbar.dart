@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
+import 'package:origami/features/Car/presntion/view/Car_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductAppBar extends StatefulWidget {
@@ -93,15 +94,41 @@ class _ProductAppBarState extends State<ProductAppBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child: Container(
-                    width: 60.w,
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
-                    height: 55.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: kSecondarycolor,
-                    ),
-                    child: Icon(Icons.shopping_cart, size: 30.sp),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Car_screen()));
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        width: 60.w,
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        height: 55.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.r),
+                          color: kSecondarycolor,
+                        ),
+                        child: Icon(Icons.shopping_cart, size: 30.sp),
+                      ),
+                      Positioned(
+                        right: 1,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: const Text(
+                            '5',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          width: 20,
+                          height: 20,
+                          decoration: const BoxDecoration(
+                              color: Colors.red,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Container(
