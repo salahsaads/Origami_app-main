@@ -1,9 +1,11 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/Theme/constant.dart';
 
-class CardModel extends StatelessWidget {
+class CardModel extends StatefulWidget {
   const CardModel({
     super.key,
     required this.image,
@@ -13,6 +15,13 @@ class CardModel extends StatelessWidget {
   final String image;
   final String productname;
   final int productpoints;
+
+  @override
+  State<CardModel> createState() => _CardModelState();
+}
+
+class _CardModelState extends State<CardModel> {
+  bool add = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +47,7 @@ class CardModel extends StatelessWidget {
               height: 4.5.h,
             ),
             Text(
-              productname,
+              widget.productname,
               style: TextStyle(
                   fontSize: 18.sp,
                   fontFamily: kFontfamily,
@@ -58,7 +67,7 @@ class CardModel extends StatelessWidget {
                       color: kPrimarycolor),
                 ),
                 Text(
-                  "$productpoints ",
+                  "${widget.productpoints} ",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                       fontFamily: kFontfamily,
@@ -77,19 +86,39 @@ class CardModel extends StatelessWidget {
               ],
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kPrimarycolor,
-                ),
-                onPressed: () {},
+                style: ElevatedButton.styleFrom(backgroundColor: kPrimarycolor),
+                onPressed: () async {
+                  await FirebaseFirestore.instance
+                      .collection('Product_In_Car')
+                      .add({
+                    'image': widget.image,
+                    'productname': widget.productname,
+                    'productpoints': widget.productpoints
+                  });
+
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.success,
+                    headerAnimationLoop: true,
+                    animType: AnimType.bottomSlide,
+                    title: "تم الاضافه الي السله ",
+                    titleTextStyle: TextStyle(
+                        fontSize: 24.sp,
+                        fontFamily: kFontfamily,
+                        color: Colors.black),
+                  ).show();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "اضافه الي السله",
-                      style:
-                          TextStyle(fontSize: 10.sp, fontFamily: kFontfamily),
+                      "  الاضافه الي السله ",
+                      style: TextStyle(
+                          fontSize: 9.sp,
+                          fontFamily: kFontfamily,
+                          color: Colors.white),
                     ),
-                    const Icon(Icons.shopping_cart)
+                    const Icon(Icons.shopping_cart, color: Colors.white)
                   ],
                 ))
           ],

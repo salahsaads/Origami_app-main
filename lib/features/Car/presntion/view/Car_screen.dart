@@ -24,7 +24,7 @@ class _Car_screenState extends State<Car_screen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(left: 8.sp, right: 8.sp),
+          padding: EdgeInsets.only(left: 8, right: 8, top: 16),
           child: SizedBox(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
