@@ -17,11 +17,14 @@ class ProductAppBar extends StatefulWidget {
 
 class _ProductAppBarState extends State<ProductAppBar> {
   List<QueryDocumentSnapshot<Map<String, dynamic>>> userdata = [];
+  QuerySnapshot? querySnapshot2;
   int points = 0;
+  String? userphone;
   getuserPoints() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    String? userphone = pref.getString('phoneNumber');
-
+    userphone = pref.getString('phoneNumber');
+    querySnapshot2 =
+        await FirebaseFirestore.instance.collection('Product_In_Car').get();
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
         .instance
         .collection('users')
@@ -95,8 +98,12 @@ class _ProductAppBarState extends State<ProductAppBar> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Car_screen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Car_screen(
+                                  number: userphone,
+                                )));
                   },
                   child: Stack(
                     children: [
@@ -114,8 +121,8 @@ class _ProductAppBarState extends State<ProductAppBar> {
                         right: 1,
                         child: Container(
                           alignment: Alignment.center,
-                          child: const Text(
-                            '5',
+                          child: Text(
+                            '${querySnapshot2!.docs.length}',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),

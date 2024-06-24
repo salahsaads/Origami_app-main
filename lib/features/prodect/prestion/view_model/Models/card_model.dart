@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/Theme/constant.dart';
 
@@ -88,12 +89,15 @@ class _CardModelState extends State<CardModel> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: kPrimarycolor),
                 onPressed: () async {
+                  SharedPreferences prefs = await SharedPreferences.getInstance();
+                  var number=prefs.get('phoneNumber');
                   await FirebaseFirestore.instance
                       .collection('Product_In_Car')
                       .add({
                     'image': widget.image,
                     'productname': widget.productname,
-                    'productpoints': widget.productpoints
+                    'productpoints': widget.productpoints,
+                    'user_number':number
                   });
 
                   AwesomeDialog(

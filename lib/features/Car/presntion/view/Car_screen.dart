@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Car/presntion/view_model/car_prodect_model.dart';
 
 class Car_screen extends StatefulWidget {
-  const Car_screen({super.key});
-
+  Car_screen({super.key, required this.number});
+  var number;
   @override
   State<Car_screen> createState() => _Car_screenState();
 }
@@ -26,20 +28,41 @@ class _Car_screenState extends State<Car_screen> {
         body: Padding(
           padding: EdgeInsets.only(left: 8, right: 8, top: 16),
           child: SizedBox(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 1.4,
-                mainAxisSpacing: 5,
-                crossAxisCount: 1,
-              ),
-              itemCount: 3,
-              itemBuilder: (context, index) => CardModel2(
-                image: 'assets/images/product.png',
-                productname: 'salah',
-                productpoints: 150,
-              ),
-            ),
-          ),
+              child: FutureBuilder(
+            future: FirebaseFirestore.instance
+                .collection('Product_In_Car')
+                .where('user_number', isEqualTo: widget.number)
+                .get(),
+            builder: (context, snap) {
+              if (snap.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snap.hasError) {
+                return Center(child: Text('Error: ${snap.error}'));
+              } else if (!snap.hasData || snap.data!.docs.isEmpty) {
+                return Center(child: Text('No products found.'));
+              } else {
+                return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.4,
+                    mainAxisSpacing: 5,
+                    crossAxisCount: 1,
+                  ),
+                  itemCount: snap.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var product =
+                        snap.data!.docs[index].data() as Map<String, dynamic>;
+                    return CardModel2(
+                      image: product['image'],
+                      productname: product[
+                          'productname'], // Assuming the field is named 'productname'
+                      productpoints: product[
+                          'productpoints'], // Assuming the field is named 'productpoints'
+                    );
+                  },
+                );
+              }
+            },
+          )),
         ));
   }
 }

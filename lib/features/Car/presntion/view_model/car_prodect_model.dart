@@ -31,8 +31,7 @@ class CardModel2 extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   color: kSecondarycolor,
-                  image: const DecorationImage(
-                      image: AssetImage('assets/images/product.png'))),
+                  image: DecorationImage(image: NetworkImage(image))),
             ),
             SizedBox(
               height: 4.5.h,
