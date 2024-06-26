@@ -20,7 +20,7 @@ class _ProductsState extends State<Products> {
   getCategoriesName() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('Product_Categories').get();
-      
+
     categoryName.addAll(querySnapshot.docs);
     setState(() {});
   }

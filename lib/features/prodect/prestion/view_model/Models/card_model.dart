@@ -27,7 +27,7 @@ class _CardModelState extends State<CardModel> {
   Widget build(BuildContext context) {
     return Container(
       height: 200.w,
-      width: 160.w,
+      width: 150.w,
       decoration: BoxDecoration(
           border: Border.all(color: kPrimarycolor, width: 0.2.w),
           borderRadius: BorderRadius.circular(10.r)),
@@ -37,7 +37,7 @@ class _CardModelState extends State<CardModel> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              height: 90.h,
+              height: 80.h,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   color: kSecondarycolor,
@@ -89,15 +89,16 @@ class _CardModelState extends State<CardModel> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: kPrimarycolor),
                 onPressed: () async {
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  var number=prefs.get('phoneNumber');
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  var number = prefs.get('phoneNumber');
                   await FirebaseFirestore.instance
                       .collection('Product_In_Car')
                       .add({
                     'image': widget.image,
                     'productname': widget.productname,
                     'productpoints': widget.productpoints,
-                    'user_number':number
+                    'user_number': number
                   });
 
                   AwesomeDialog(

@@ -37,10 +37,10 @@ class _CategoryProductsState extends State<CategoryProducts> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220.h,
+      height: 200.h,
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: 1.4,
+          childAspectRatio: 1.3,
           mainAxisSpacing: 5,
           crossAxisCount: 1,
         ),

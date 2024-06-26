@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/Theme/constant.dart';
 
-class Intro extends StatelessWidget {
+class Intro extends StatefulWidget {
   const Intro({
     super.key,
     required this.image,
@@ -15,6 +15,19 @@ class Intro extends StatelessWidget {
   final String title;
   final String subtitle;
   final Function()? ontap;
+
+  @override
+  State<Intro> createState() => _IntroState();
+}
+
+class _IntroState extends State<Intro> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +55,7 @@ class Intro extends StatelessWidget {
                   ),
                   Center(
                       child: Image.asset(
-                    image,
+                    widget.image,
                     width: 300.w,
                   )),
                 ],
@@ -53,7 +66,7 @@ class Intro extends StatelessWidget {
             height: 50.h,
           ),
           Text(
-            title,
+            widget.title,
             style: TextStyle(
                 fontFamily: 'Cairo-Regular',
                 fontSize: 34.sp,
@@ -63,7 +76,7 @@ class Intro extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              subtitle,
+              widget.subtitle,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Montserrat-Regular',
@@ -81,7 +94,7 @@ class Intro extends StatelessWidget {
                 width: 10.w,
               ),
               GestureDetector(
-                onTap: ontap,
+                onTap: widget.ontap,
                 child: Container(
                   width: 50.w,
                   height: 50.h,

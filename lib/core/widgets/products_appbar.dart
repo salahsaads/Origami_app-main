@@ -20,7 +20,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
   QuerySnapshot? querySnapshot2;
   int points = 0;
   String? userphone;
-  getuserPoints() async {
+  Future<String> getuserPoints() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     userphone = pref.getString('phoneNumber');
     querySnapshot2 =
@@ -33,6 +33,8 @@ class _ProductAppBarState extends State<ProductAppBar> {
     userdata = querySnapshot.docs;
     setState(() {});
     points = await userdata[0]['points'];
+
+    return 'yes';
   }
 
   @override
@@ -121,9 +123,12 @@ class _ProductAppBarState extends State<ProductAppBar> {
                         right: 1,
                         child: Container(
                           alignment: Alignment.center,
-                          child: Text(
-                            '${querySnapshot2!.docs.length}',
-                            style: TextStyle(
+                          // ignore: sort_child_properties_last
+                          child:   Text(
+                            querySnapshot2 != null
+                                ? '${querySnapshot2!.docs.length}'
+                                : '0',
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),

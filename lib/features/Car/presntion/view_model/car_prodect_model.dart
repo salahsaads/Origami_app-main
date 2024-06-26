@@ -1,5 +1,8 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/Theme/constant.dart';
 
@@ -79,12 +82,37 @@ class CardModel2 extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimarycolor,
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  var number = prefs.get('phoneNumber');
+                  QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+                      .collection('Product_In_Car')
+                      .where('user_number', isEqualTo: number)
+                      .where('productname', isEqualTo: productname)
+                      .get();
+
+                  for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+                    await doc.reference.delete();
+                  }
+
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.success,
+                    headerAnimationLoop: true,
+                    animType: AnimType.bottomSlide,
+                    title: "تم الحذف الي السله ",
+                    titleTextStyle: TextStyle(
+                        fontSize: 24.sp,
+                        fontFamily: kFontfamily,
+                        color: Colors.black),
+                  ).show();
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "الحذف من الي السله",
+                      "الحذف من  السله",
                       style: TextStyle(
                         fontSize: 10.sp,
                         fontFamily: kFontfamily,
