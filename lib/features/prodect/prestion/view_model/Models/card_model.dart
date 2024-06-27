@@ -76,14 +76,14 @@ class _CardModelState extends State<CardModel> {
                       fontWeight: FontWeight.bold,
                       color: kPrimarycolor),
                 ),
-                Text(
-                  "1 كيلو : ",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: kFontfamily,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold),
-                ),
+                // Text(
+                //   "1 كيلو : ",
+                //   textDirection: TextDirection.rtl,
+                //   style: TextStyle(
+                //       fontFamily: kFontfamily,
+                //       fontSize: 14.sp,
+                //       fontWeight: FontWeight.bold),
+                // ),
               ],
             ),
             ElevatedButton(

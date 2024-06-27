@@ -55,7 +55,7 @@ class CustomMaterialApp extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   // Show loading indicator or splash screen while checking login status
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 } else {
                   if (snapshot.hasError) {
                     // Handle error
