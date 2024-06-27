@@ -16,6 +16,22 @@ class _Car_screenState extends State<Car_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: Container(
+          margin: EdgeInsets.only(left: 30.w),
+          alignment: Alignment.center,
+          width: double.infinity,
+          height: 40.h,
+          decoration: BoxDecoration(
+              color: kPrimarycolor, borderRadius: BorderRadius.circular(15.r)),
+          child: Text(
+            'تواصل',
+            style: TextStyle(
+              fontSize: 16.sp,
+              fontFamily: kFontfamily,
+              color: kSecondarycolor,
+            ),
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: kPrimarycolor,
           centerTitle: true,

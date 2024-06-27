@@ -18,6 +18,7 @@ class Products extends StatefulWidget {
 class _ProductsState extends State<Products> {
   List categoryName = [];
   getCategoriesName() async {
+    
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('Product_Categories').get();
 

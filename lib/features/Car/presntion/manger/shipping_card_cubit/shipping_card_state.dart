@@ -4,3 +4,11 @@ part of 'shipping_card_cubit.dart';
 abstract class ShippingCardState {}
 
 class ShippingCardInitial extends ShippingCardState {}
+
+class ShippingCardSuccess extends ShippingCardState {}
+
+class ShippingCardFailure extends ShippingCardState {
+
+}
+
+class ShippingCardLoading extends ShippingCardState {}

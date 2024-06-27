@@ -23,8 +23,10 @@ class _ProductAppBarState extends State<ProductAppBar> {
   Future<String> getuserPoints() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     userphone = pref.getString('phoneNumber');
-    querySnapshot2 =
-        await FirebaseFirestore.instance.collection('Product_In_Car').get();
+    querySnapshot2 = await FirebaseFirestore.instance
+        .collection('Product_In_Car')
+        .where('user_number', isEqualTo: userphone)
+        .get();
     QuerySnapshot<Map<String, dynamic>> querySnapshot = await FirebaseFirestore
         .instance
         .collection('users')
@@ -124,7 +126,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
                         child: Container(
                           alignment: Alignment.center,
                           // ignore: sort_child_properties_last
-                          child:   Text(
+                          child: Text(
                             querySnapshot2 != null
                                 ? '${querySnapshot2!.docs.length}'
                                 : '0',
