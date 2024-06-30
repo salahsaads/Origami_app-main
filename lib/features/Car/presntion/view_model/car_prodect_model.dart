@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../core/Theme/constant.dart';
 
@@ -16,6 +17,7 @@ class CardModel2 extends StatelessWidget {
   final String image;
   final String productname;
   final int productpoints;
+  
   @override
   Widget build(BuildContext context) {
     return Container(
