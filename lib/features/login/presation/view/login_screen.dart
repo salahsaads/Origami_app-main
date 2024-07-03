@@ -1,8 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:origami/features/profile/Cubit/cubit/profile_cubit.dart';
 import 'package:origami/features/screens/loading_manger.dart';
 
 import 'package:origami/features/register/prestion/view/register_screen.dart';
@@ -27,7 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formstate = GlobalKey();
   bool isloading = false;
 
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,6 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 pass: _passwordController,
                                 context: context,
                               );
+
+                              setState(() {
+                                isloading = false;
+                              });
                             }
                           },
                           text: 'تسجيل الدخول ',

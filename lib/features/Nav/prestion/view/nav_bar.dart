@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/prodect/prestion/view/products.dart';
-import 'package:origami/features/Nav/prestion/view/profile.dart';
+import 'package:origami/features/profile/Cubit/cubit/profile_cubit.dart';
+import 'package:origami/features/profile/prestion/view/profile_screen.dart';
+import 'package:origami/features/profile/prestion/view_model/profile_model.dart';
 import 'package:origami/features/screens/weight.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
   bool heart = false;
   final controller = PageController();
 
+  ProfileModel? data;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+  }
+
   @override
   void dispose() {
     controller.dispose();
@@ -27,10 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pages = [
     const Products(),
     const Weight(),
-    const Profile(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
+                
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(

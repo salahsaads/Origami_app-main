@@ -24,6 +24,8 @@ class _RegisterFormState extends State<RegisterForm> {
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
+  TextEditingController location_on = TextEditingController();
+
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   bool isloading = false;
 
@@ -75,6 +77,16 @@ class _RegisterFormState extends State<RegisterForm> {
                 icon: Icons.lock,
                 controller: pass,
               ),
+              SizedBox(
+                height: 5.h,
+              ),
+              CustomTextField(
+                obscure: false,
+                label: 'العنوان',
+                hint: 'ادخل عنوانك',
+                icon: Icons.location_on,
+                controller: location_on,
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -84,10 +96,14 @@ class _RegisterFormState extends State<RegisterForm> {
                     isloading = true;
                     setState(() {});
                     register(
-                        name: name, phone: phone, pass: pass, context: context);
+                        name: name,
+                        phone: phone,
+                        pass: pass,
+                        context: context,
+                        location_on: location_on);
                   }
                 },
-                text: isloading ? '...' : 'إنشاء حساب',
+                text: isloading ? 'Loading...' : 'إنشاء حساب',
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -79,12 +79,14 @@ register(
     {required TextEditingController name,
     required TextEditingController phone,
     required TextEditingController pass,
+    required TextEditingController location_on,
     required BuildContext context}) async {
-  await users.add({
+  await users.doc(phone.text.trim()).set({
     'name': name.text.trim(),
     'phoneNumber': phone.text.trim(),
     'password': pass.text.trim(),
-    'points': 0
+    'points': 0,
+    'location': location_on.text.trim()
   });
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('phoneNumber', phone.text);
@@ -96,6 +98,8 @@ register(
       ),
       (route) => false);
 }
+
+
 
 logout({required BuildContext context}) async {
   setLoginStatus(false);
