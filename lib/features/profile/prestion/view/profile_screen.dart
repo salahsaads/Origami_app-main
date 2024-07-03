@@ -122,6 +122,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
               )
-            : Center(child: CircularProgressIndicator()));
+            : Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: double.infinity,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                                'assets/images/vecteezy_3d-rendering-green-recycle-sign-with-globe-on-background_22715810.jpg'))),
+                  ),
+                  const Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.white,
+                  )),
+                ],
+              ));
   }
 }
