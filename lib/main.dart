@@ -14,7 +14,7 @@ import 'package:origami/features/register/prestion/view/register_screen.dart';
 import 'package:origami/features/screens/splah_screen.dart';
 
 import 'firebase_options.dart';
-
+int sum_all=0;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -47,6 +47,8 @@ class CustomMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(),

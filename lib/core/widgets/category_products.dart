@@ -47,9 +47,9 @@ class _CategoryProductsState extends State<CategoryProducts> {
         itemCount: categoryProducts.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => CardModel(
-          image: 'assets/images/product.png',
+          image: categoryProducts[index]['image'],
           productname: categoryProducts[index]['name'],
-          productpoints: 150,
+          productpoints: categoryProducts[index]['point'],
         ),
       ),
     );

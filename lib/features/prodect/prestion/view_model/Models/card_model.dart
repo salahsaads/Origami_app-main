@@ -41,8 +41,7 @@ class _CardModelState extends State<CardModel> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.r),
                   color: kSecondarycolor,
-                  image: const DecorationImage(
-                      image: AssetImage('assets/images/product.png'))),
+                  image: DecorationImage(image: NetworkImage(widget.image))),
             ),
             SizedBox(
               height: 4.5.h,

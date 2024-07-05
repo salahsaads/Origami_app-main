@@ -6,7 +6,7 @@ import 'package:origami/features/prodect/prestion/view/products.dart';
 import 'package:origami/features/profile/Cubit/cubit/profile_cubit.dart';
 import 'package:origami/features/profile/prestion/view/profile_screen.dart';
 import 'package:origami/features/profile/prestion/view_model/profile_model.dart';
-import 'package:origami/features/screens/weight.dart';
+import 'package:origami/features/Weight/prestion/view/weight.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
