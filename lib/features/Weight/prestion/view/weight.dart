@@ -29,6 +29,15 @@ class Weight extends StatelessWidget {
     }
   }
 
+  void _launchMessenger() async {
+    const messengerUrl = 'http://ms.me/1Calmcalm';
+    if (await canLaunch(messengerUrl)) {
+      await launch(messengerUrl);
+    } else {
+      throw 'Could not launch $messengerUrl';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -85,7 +94,9 @@ class Weight extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 30.w),
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          _launchMessenger();
+                        },
                         child: Container(
                           alignment: Alignment.center,
                           width: 80,
