@@ -18,7 +18,7 @@ class Item_Profile extends StatelessWidget {
       children: [
         Icon(
           iconname,
-          size: 20.sp,
+          size: 40.sp,
         ),
         SizedBox(
           width: 10.w,
@@ -26,7 +26,7 @@ class Item_Profile extends StatelessWidget {
         Text(
           '${Title}',
           style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 20.sp,
               fontFamily: kFontfamily,
               fontWeight: FontWeight.bold),

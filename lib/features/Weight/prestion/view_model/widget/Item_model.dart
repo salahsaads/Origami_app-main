@@ -150,6 +150,38 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
               children: [
                 Spacer(),
                 Text(
+                  "انقاص",
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: kFontfamily,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  width: 5.w,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (qu != 0) {
+                        qu--;
+                        Cubit.Sum_All2(widget.productpoints);
+                      }
+                    });
+                  },
+                  child: Container(
+                    child: Icon(Icons.remove, size: 40.sp, color: Colors.white),
+                    width: 40.w,
+                    height: 40.w,
+                    decoration: BoxDecoration(
+                        color: kPrimarycolor,
+                        borderRadius: BorderRadius.circular(10.r)),
+                  ),
+                ),
+                SizedBox(
+                  width: 30.w,
+                ),
+                Text(
                   "اضافه",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(

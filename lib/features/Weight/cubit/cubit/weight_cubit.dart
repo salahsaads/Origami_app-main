@@ -12,6 +12,10 @@ class WeightCubit extends Cubit<WeightState> {
     sumall += point;
     emit(WeightInitial());
   }
+  Sum_All2(int point) {
+    sumall -= point;
+    emit(WeightInitial());
+  }
 
   List<KhordaModel> data = [];
   GetData() async {

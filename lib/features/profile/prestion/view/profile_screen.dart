@@ -40,12 +40,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                             image: AssetImage(
-                                'assets/images/vecteezy_3d-rendering-green-recycle-sign-with-globe-on-background_22715810.jpg'))),
+                                'assets/images/group-happy-friends-holding-cardboard-box-with-recycle-items.jpg'))),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -99,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               '${profileModel!.point}',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 20.sp,
                                   fontFamily: kFontfamily,
                                   fontWeight: FontWeight.bold),

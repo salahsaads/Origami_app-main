@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Car/presntion/view_model/car_prodect_model.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,12 +17,13 @@ class Car_screen extends StatefulWidget {
 }
 
 class _Car_screenState extends State<Car_screen> {
+  final int ProdectNumber = 0;
   final String phoneNumber =
-      '+201063012453'; // Replace with actual phone number
-  final String message = 'Hello! I would like to chat with you.';
+      '+20 114 071 0570'; // Replace with actual phone number
+
   void openWhatsApp() async {
     final String url =
-        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}';
+        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️  السلام عليكم  اريد التواصل معكم لاستبدال مونتجات ')}';
     print('Attempting to launch URL: $url');
     try {
       if (await canLaunch(url)) {
@@ -50,13 +52,25 @@ class _Car_screenState extends State<Car_screen> {
             decoration: BoxDecoration(
                 color: kPrimarycolor,
                 borderRadius: BorderRadius.circular(15.r)),
-            child: Text(
-              'تواصل',
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontFamily: kFontfamily,
-                color: kSecondarycolor,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.whatsapp,
+                  color: Colors.white,
+                ),
+                SizedBox(
+                  width: 20.w,
+                ),
+                Text(
+                  'تواصل',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontFamily: kFontfamily,
+                    color: kSecondarycolor,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
