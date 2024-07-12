@@ -107,6 +107,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
                         MaterialPageRoute(
                             builder: (context) => Car_screen(
                                   number: userphone,
+                                  allpoint: points * 1.0,
                                 )));
                   },
                   child: Stack(

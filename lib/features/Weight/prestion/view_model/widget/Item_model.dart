@@ -21,8 +21,8 @@ class Item_model_Khorda extends StatefulWidget {
 }
 
 class _Item_model_KhordaState extends State<Item_model_Khorda> {
-  int qu = 0;
-  int sum = 0;
+  var qu = 0.0;
+  var sum = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +163,9 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      if (qu != 0) {
-                        qu--;
-                        Cubit.Sum_All2(widget.productpoints);
+                      if (qu != 0.0) {
+                        qu -= .5;
+                        Cubit.Sum_All2(widget.productpoints * 1.0);
                       }
                     });
                   },
@@ -195,8 +195,8 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      qu++;
-                      Cubit.Sum_All(widget.productpoints);
+                      qu += .5;
+                      Cubit.Sum_All(widget.productpoints * 1.0);
                     });
                   },
                   child: Container(

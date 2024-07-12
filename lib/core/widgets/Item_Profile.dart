@@ -19,17 +19,25 @@ class Item_Profile extends StatelessWidget {
         Icon(
           iconname,
           size: 40.sp,
+          color: kPrimarycolor,
         ),
         SizedBox(
           width: 10.w,
         ),
-        Text(
-          '${Title}',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.sp,
-              fontFamily: kFontfamily,
-              fontWeight: FontWeight.bold),
+        Container(
+          height: 40.h,
+          width: 200.w,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: kSecondarycolor, borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            '${Title}',
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 24.sp,
+                fontFamily: kFontfamily,
+                fontWeight: FontWeight.w800),
+          ),
         )
       ],
     );

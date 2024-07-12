@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 'assets/images/group-happy-friends-holding-cardboard-box-with-recycle-items.jpg'))),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -91,18 +91,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             Image.asset(
                               'assets/images/coin.png',
-                              width: 25.w,
+                              width: 40.w,
                             ),
                             SizedBox(
                               width: 10.w,
                             ),
-                            Text(
-                              '${profileModel!.point}',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20.sp,
-                                  fontFamily: kFontfamily,
-                                  fontWeight: FontWeight.bold),
+                            Container(
+                              height: 40.h,
+                              width: 200.w,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  color: kSecondarycolor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Text(
+                                '${profileModel!.point}',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24.sp,
+                                    fontFamily: kFontfamily,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             )
                           ],
                         ),

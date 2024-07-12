@@ -7,27 +7,12 @@ import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 import 'package:origami/features/Weight/prestion/view_model/widget/Item_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Weight extends StatelessWidget {
   const Weight({super.key});
   final String phoneNumber =
       '+20 114 071 0570'; // Replace with actual phone number
-
-  void openWhatsApp() async {
-    final String url =
-        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
-    print('Attempting to launch URL: $url');
-    try {
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        print('Could not launch $url');
-        throw 'Could not launch $url';
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
 
   void _launchMessenger() async {
     const messengerUrl = 'http://ms.me/1Calmcalm';
@@ -60,7 +45,7 @@ class Weight extends StatelessWidget {
                       padding: EdgeInsets.only(left: 55.w),
                       child: Container(
                         alignment: Alignment.center,
-                        width: 80,
+                        width: 60,
                         height: 45,
                         child: Text(
                           '${Cubit.sumall}',
@@ -75,12 +60,24 @@ class Weight extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 30.w),
                       child: GestureDetector(
-                        onTap: () {
-                          openWhatsApp();
+                        onTap: () async {
+                          final String url =
+                              'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} point  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
+                          print('Attempting to launch URL: $url');
+                          try {
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              print('Could not launch $url');
+                              throw 'Could not launch $url';
+                            }
+                          } catch (e) {
+                            print('Error: $e');
+                          }
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          width: 80,
+                          width: 60,
                           height: 45,
                           child: FaIcon(FontAwesomeIcons.whatsapp),
                           decoration: BoxDecoration(
@@ -88,9 +85,8 @@ class Weight extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
-                    )
-                    //messenger
-                    ,
+                    ),
+                    // phone
                     Padding(
                       padding: EdgeInsets.only(left: 30.w),
                       child: GestureDetector(
@@ -99,9 +95,26 @@ class Weight extends StatelessWidget {
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          width: 80,
+                          width: 60,
                           height: 45,
                           child: Icon(Icons.facebook),
+                          decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 30.w),
+                      child: GestureDetector(
+                        onTap: () {
+                          launchUrlString("tel://01063012453");
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 60,
+                          height: 45,
+                          child: Icon(Icons.phone),
                           decoration: BoxDecoration(
                               color: Colors.amber,
                               borderRadius: BorderRadius.circular(10)),

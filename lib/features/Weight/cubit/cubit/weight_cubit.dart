@@ -7,13 +7,14 @@ part 'weight_state.dart';
 
 class WeightCubit extends Cubit<WeightState> {
   WeightCubit() : super(WeightInitial());
-  int sumall = 0;
-  Sum_All(int point) {
-    sumall += point;
+  double sumall = 0.0;
+  Sum_All(double point) {
+    sumall += point*.5;
     emit(WeightInitial());
   }
-  Sum_All2(int point) {
-    sumall -= point;
+
+  Sum_All2(double point) {
+    sumall = sumall - point * .5;
     emit(WeightInitial());
   }
 

@@ -39,6 +39,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
     return SizedBox(
       height: 200.h,
       child: GridView.builder(
+        //reverse: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 1.3,
           mainAxisSpacing: 5,

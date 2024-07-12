@@ -17,7 +17,7 @@ class CardModel2 extends StatelessWidget {
   final String image;
   final String productname;
   final int productpoints;
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -103,7 +103,7 @@ class CardModel2 extends StatelessWidget {
                     dialogType: DialogType.success,
                     headerAnimationLoop: true,
                     animType: AnimType.bottomSlide,
-                    title: "تم الحذف الي السله ",
+                    title: "تم الحذف من السله ",
                     titleTextStyle: TextStyle(
                         fontSize: 24.sp,
                         fontFamily: kFontfamily,
