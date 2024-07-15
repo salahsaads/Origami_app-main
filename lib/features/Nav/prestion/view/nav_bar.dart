@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/core/Theme/constant.dart';
+import 'package:origami/features/favoriteScreen/presition/view/favoritesceen.dart';
 import 'package:origami/features/prodect/prestion/view/products.dart';
 import 'package:origami/features/profile/Cubit/cubit/profile_cubit.dart';
 import 'package:origami/features/profile/prestion/view/profile_screen.dart';
@@ -25,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+    DataGloble.PointAll = 0;
   }
 
   @override
@@ -38,19 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> pages = [
     const Products(),
     const Weight(),
+    const Favoritescreen(),
     const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
-                
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: BottomNavigationBar(
+          unselectedIconTheme: IconThemeData(size: 20.sp),
           selectedLabelStyle:
               TextStyle(fontWeight: FontWeight.bold, fontSize: 12.sp),
+          unselectedLabelStyle: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 12.sp, color: Colors.grey),
           selectedIconTheme: IconThemeData(size: 22.sp),
           currentIndex: selectedindex,
           selectedItemColor: kPrimarycolor,
+          unselectedItemColor: Colors.grey,
           onTap: (index) {
             setState(() {
               selectedindex = index;
@@ -62,6 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 label: 'المنتجات'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.monitor_weight_rounded), label: 'الميزان'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.favorite), label: 'المفضل '),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person), label: 'الملف الشخصي'),
           ]),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
+import 'package:origami/features/All_Prodect_details/Presntion/view/All_Prodoct.dart';
 
 import '../../../../core/widgets/category_products.dart';
 import '../../../../core/widgets/products_appbar.dart';
@@ -47,24 +48,48 @@ class _ProductsState extends State<Products> {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
               mainAxisSpacing: 10,
-              childAspectRatio: 1.3,
+              childAspectRatio: 1.2,
             ),
             itemCount: categoryName.length,
             itemBuilder: (context, index) => Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(categoryName[index]['Categoryname'],
-                    style: TextStyle(
-                      fontSize: 20.sp,
-                      height: 0.2,
-                      fontFamily: kFontfamily,
-                    )),
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AllProdoct(
+                                    collectionpath:
+                                        '${categoryName[index].id}')));
+                      },
+                      child: Text(' شاهد الكل ',
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            height: 0.2,
+                            color: kPrimarycolor,
+                            fontFamily: kFontfamily,
+                          )),
+                    ),
+                    Spacer(),
+                    Text(categoryName[index]['Categoryname'],
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          height: 0.2,
+                          fontFamily: kFontfamily,
+                        )),
+                  ],
+                ),
                 SizedBox(
                   height: 15.h,
                 ),
                 CategoryProducts(
+                  AspectRatio: 1.3,
+                  dir: Axis.horizontal,
                   collectionpath: '${categoryName[index].id}',
-                )
+                ),
               ],
             ),
           ),

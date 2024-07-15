@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 import 'package:origami/features/Weight/prestion/view_model/widget/Item_model.dart';
@@ -62,7 +63,7 @@ class Weight extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () async {
                           final String url =
-                              'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} point  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
+                              'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} الاجمالي ${DataGloble.KProdect}  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
                           print('Attempting to launch URL: $url');
                           try {
                             if (await canLaunch(url)) {

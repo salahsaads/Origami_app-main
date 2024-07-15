@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 
 import '../../../../../core/Theme/constant.dart';
@@ -23,6 +24,12 @@ class Item_model_Khorda extends StatefulWidget {
 class _Item_model_KhordaState extends State<Item_model_Khorda> {
   var qu = 0.0;
   var sum = 0.0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DataGloble.KProdect.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,6 +173,12 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                       if (qu != 0.0) {
                         qu -= .5;
                         Cubit.Sum_All2(widget.productpoints * 1.0);
+                        DataGloble.KProdect.addAll(
+                            {widget.productname: qu * widget.productpoints});
+                      }
+                      if (qu == 0) {
+                        DataGloble.KProdect.remove(
+                            {widget.productname: qu * widget.productpoints});
                       }
                     });
                   },
@@ -197,6 +210,8 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                     setState(() {
                       qu += .5;
                       Cubit.Sum_All(widget.productpoints * 1.0);
+                      DataGloble.KProdect.addAll(
+                          {widget.productname: qu * widget.productpoints});
                     });
                   },
                   child: Container(

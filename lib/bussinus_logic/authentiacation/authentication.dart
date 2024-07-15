@@ -99,6 +99,49 @@ register(
       (route) => false);
 }
 
+Add_Fov({
+  required String name,
+  required String Image,
+  required int point,
+}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? number = prefs.get('phoneNumber') as String;
+  CollectionReference favorite =
+      FirebaseFirestore.instance.collection('favorite');
+
+  await favorite
+      .doc()
+      .set({'name': name, 'image': Image, 'point': point, 'number': number});
+}
+
+
+
+Future<void> removeFov({required name}) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? number = prefs.getString('phoneNumber');
+
+  if (number != null ) {
+    CollectionReference favorite = FirebaseFirestore.instance.collection('favorite');
+    
+    // Query for documents that match both 'name' and 'number'
+    QuerySnapshot querySnapshot = await favorite
+      .where('number', isEqualTo: number)
+      .where('name', isEqualTo: name)
+      .get();
+
+    // Loop through the results and delete each document
+    for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+      await doc.reference.delete();
+    }
+
+    print('Favorite(s) removed successfully.');
+  } else {
+    if (number == null) {
+      print("Phone number not found in SharedPreferences.");
+    }
+    
+  }
+}
 
 
 logout({required BuildContext context}) async {

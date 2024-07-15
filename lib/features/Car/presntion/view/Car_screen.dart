@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Car/presntion/view_model/car_prodect_model.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
@@ -28,7 +29,7 @@ class _Car_screenState extends State<Car_screen> {
 
   void openWhatsApp() async {
     final String url =
-        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️  السلام عليكم  اريد التواصل معكم لاستبدال مونتجات ')}';
+        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️ ${DataGloble.PointAll} الاجمالي ${DataGloble.Prodect}  السلام عليكم  اريد التواصل معكم لاستبدال مونتجات ')}';
     print('Attempting to launch URL: $url');
     try {
       if (await canLaunch(url)) {
@@ -48,6 +49,8 @@ class _Car_screenState extends State<Car_screen> {
   void initState() {
     super.initState();
     _getTotalProductPoints();
+    DataGloble.PointAll = 0;
+    DataGloble.Prodect.clear();
   }
 
   Future<void> _getTotalProductPoints() async {
@@ -77,7 +80,8 @@ class _Car_screenState extends State<Car_screen> {
           children: [
             GestureDetector(
               onTap: () {
-                if (widget.allpoint == totalPoints) {
+                if (widget.allpoint >= DataGloble.PointAll &&
+                    DataGloble.PointAll > 0) {
                   openWhatsApp();
                 } else {
                   AwesomeDialog(
@@ -86,7 +90,7 @@ class _Car_screenState extends State<Car_screen> {
                     headerAnimationLoop: true,
                     animType: AnimType.bottomSlide,
                     title:
-                        'لا يوجد نقاط كافيه بحاجه الي ${totalPoints - widget.allpoint}',
+                        'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
                     titleTextStyle: TextStyle(
                         fontSize: 24.sp,
                         fontFamily: kFontfamily,
@@ -128,7 +132,8 @@ class _Car_screenState extends State<Car_screen> {
             ),
             GestureDetector(
               onTap: () {
-                if (widget.allpoint == totalPoints) {
+                if (widget.allpoint >= DataGloble.PointAll &&
+                    DataGloble.PointAll > 0) {
                   launchUrlString("tel://01063012453");
                 } else {
                   AwesomeDialog(
@@ -137,7 +142,7 @@ class _Car_screenState extends State<Car_screen> {
                     headerAnimationLoop: true,
                     animType: AnimType.bottomSlide,
                     title:
-                        'لا يوجد نقاط كافيه بحاجه الي ${totalPoints - widget.allpoint}',
+                        'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
                     titleTextStyle: TextStyle(
                         fontSize: 24.sp,
                         fontFamily: kFontfamily,
@@ -197,7 +202,7 @@ class _Car_screenState extends State<Car_screen> {
                     return GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 1.4,
+                        childAspectRatio: 1.3,
                         mainAxisSpacing: 5,
                         crossAxisCount: 1,
                       ),
