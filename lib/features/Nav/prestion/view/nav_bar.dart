@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/favoriteScreen/presition/view/favoritesceen.dart';
-import 'package:origami/features/prodect/prestion/view/products.dart';
+import 'package:origami/features/product/presentation/view/products_view.dart';
 import 'package:origami/features/profile/Cubit/cubit/profile_cubit.dart';
 import 'package:origami/features/profile/prestion/view/profile_screen.dart';
 import 'package:origami/features/profile/prestion/view_model/profile_model.dart';

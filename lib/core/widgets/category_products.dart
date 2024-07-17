@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 
-import '../../features/prodect/prestion/view_model/Models/card_model.dart';
+import '../../features/product/presentation/models/card_model.dart';
 
 class CategoryProducts extends StatefulWidget {
   CategoryProducts(

@@ -1,11 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../../core/Theme/constant.dart';
+import '../../../../core/Theme/constant.dart';
 
 class CardModel extends StatefulWidget {
   const CardModel({
@@ -67,8 +68,8 @@ class _CardModelState extends State<CardModel> {
         }
       },
       child: Container(
-        height: 200.w,
-        width: 150.w,
+        // height: 200.h,
+        // width: 150.w,
         decoration: BoxDecoration(
             border: Border.all(color: kPrimarycolor, width: 0.2.w),
             borderRadius: BorderRadius.circular(10.r)),
@@ -84,8 +85,8 @@ class _CardModelState extends State<CardModel> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         color: kSecondarycolor,
-                        image:
-                            DecorationImage(image: NetworkImage(widget.image))),
+                        image: DecorationImage(
+                            image: CachedNetworkImageProvider(widget.image))),
                   ),
                   Positioned(
                       right: 2,
@@ -173,22 +174,26 @@ class _CardModelState extends State<CardModel> {
                       animType: AnimType.bottomSlide,
                       title: "تم الاضافه الي السله ",
                       titleTextStyle: TextStyle(
-                          fontSize: 24.sp,
+                          fontSize: 30.sp,
                           fontFamily: kFontfamily,
                           color: Colors.black),
                     ).show();
                   },
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // mainAxisAlignment: MainAxisAlignment.,
                     children: [
                       Text(
                         "  الاضافه الي السله ",
                         style: TextStyle(
-                            fontSize: 9.sp,
+                            fontSize: 8.sp,
                             fontFamily: kFontfamily,
                             color: Colors.white),
                       ),
-                      const Icon(Icons.shopping_cart, color: Colors.white)
+                      Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                        size: 24.sp,
+                      )
                     ],
                   ))
             ],

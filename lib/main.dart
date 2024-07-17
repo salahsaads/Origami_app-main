@@ -12,12 +12,15 @@ import 'package:origami/features/login/presation/view/login_screen.dart';
 import 'package:origami/features/onboarding/onboarding_view.dart';
 import 'package:origami/features/register/prestion/view/register_screen.dart';
 import 'package:origami/features/screens/splah_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 
-int sum_all = 0;
+late SharedPreferences pref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  pref = await SharedPreferences.getInstance();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
