@@ -68,7 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
           .set({
         'name': name.trim(),
         'phoneNumber': phone.trim(),
-        'password': await encryptData.encryptPassword(pass.trim()),
+        'password': encryptData.encryptPassword(pass.trim()),
         'points': 0,
         'location': location.trim()
       });

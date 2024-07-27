@@ -4,7 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:origami/features/login/presation/view/login_screen.dart';
+import 'package:origami/features/auth/presentation/view/login_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/Nav/prestion/view/nav_bar.dart';
@@ -114,20 +114,19 @@ Add_Fov({
       .set({'name': name, 'image': Image, 'point': point, 'number': number});
 }
 
-
-
 Future<void> removeFov({required name}) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? number = prefs.getString('phoneNumber');
 
-  if (number != null ) {
-    CollectionReference favorite = FirebaseFirestore.instance.collection('favorite');
-    
+  if (number != null) {
+    CollectionReference favorite =
+        FirebaseFirestore.instance.collection('favorite');
+
     // Query for documents that match both 'name' and 'number'
     QuerySnapshot querySnapshot = await favorite
-      .where('number', isEqualTo: number)
-      .where('name', isEqualTo: name)
-      .get();
+        .where('number', isEqualTo: number)
+        .where('name', isEqualTo: name)
+        .get();
 
     // Loop through the results and delete each document
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
@@ -139,10 +138,8 @@ Future<void> removeFov({required name}) async {
     if (number == null) {
       print("Phone number not found in SharedPreferences.");
     }
-    
   }
 }
-
 
 logout({required BuildContext context}) async {
   setLoginStatus(false);

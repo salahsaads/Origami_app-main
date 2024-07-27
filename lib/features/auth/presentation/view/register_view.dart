@@ -25,7 +25,7 @@ class RegisterScreen extends StatelessWidget {
             ).show();
           }
         },
-        child: const Scaffold(
+        child: Scaffold(
           body: RegisterBody(),
         ));
   }

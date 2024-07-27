@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 import 'package:origami/features/Nav/prestion/view/nav_bar.dart';
+import 'package:origami/features/auth/presentation/view/login_view.dart';
 
-import 'package:origami/features/login/presation/view/login_screen.dart';
 import 'package:origami/features/onboarding/onboarding_view.dart';
 import 'package:origami/features/register/prestion/view/register_screen.dart';
 import 'package:origami/features/screens/splah_screen.dart';

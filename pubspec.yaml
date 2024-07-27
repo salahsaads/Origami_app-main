@@ -34,12 +34,15 @@ dependencies:
   cached_network_image: ^3.3.1
   cloud_firestore: ^4.14.0
   country_icons: ^3.0.0
+  crypto: ^3.0.3
   cupertino_icons: ^1.0.2
+  encrypt: ^5.0.3
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   flag: ^7.0.0
   flutter:
     sdk: flutter
+  rive_common: ^0.4.10
   flutter_bloc: ^8.1.6
   flutter_screenutil: ^5.9.0
   font_awesome_flutter: ^10.7.0

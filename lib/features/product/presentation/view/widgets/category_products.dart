@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 
-import '../../features/product/presentation/models/card_model.dart';
+import '../../models/card_model.dart';
 
 class CategoryProducts extends StatefulWidget {
-  CategoryProducts(
-      {super.key,
-      required this.collectionpath,
-      required this.dir,
-      required this.AspectRatio});
+  CategoryProducts({
+    super.key,
+    required this.collectionpath,
+    required this.dir,
+  });
 
   final String collectionpath;
   Axis dir = Axis.horizontal;
-  final double AspectRatio;
+
   @override
   State<CategoryProducts> createState() => _CategoryProductsState();
 }
@@ -39,12 +39,11 @@ class _CategoryProductsState extends State<CategoryProducts> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200.h,
+    return Expanded(
+      flex: 1,
       child: GridView.builder(
         //reverse: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          childAspectRatio: widget.AspectRatio,
           mainAxisSpacing: 5,
           crossAxisCount: 1,
         ),

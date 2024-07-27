@@ -43,6 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
               desc: state.message,
               btnOkOnPress: () {},
             ).show();
+          } else if (state is AuthLoading) {
+            isloading = true;
           }
         },
         child: Scaffold(
@@ -92,7 +94,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             CustomButton(
                               ontap: () async {
                                 if (formstate.currentState!.validate()) {
-                                  isloading = true;
                                   BlocProvider.of<AuthCubit>(context).login(
                                       phone: _phoneNumberController,
                                       pass: _passwordController,
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   // );
 
                                   // setState(() {
-                                  isloading = false;
+
                                   // });
                                 }
                               },

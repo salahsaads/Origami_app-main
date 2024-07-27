@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
-import 'package:origami/features/login/presation/view/login_screen.dart';
+import 'package:origami/features/auth/presentation/view/login_view.dart';
 import 'package:origami/features/onboarding/intro_view.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
+import 'package:origami/features/auth/presentation/view/login_view.dart';
 import 'package:origami/features/screens/loading_manger.dart';
-import 'package:origami/features/login/presation/view/login_screen.dart';
 
 import '../Theme/constant.dart';
 import 'custom_button.dart';
