@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 
-import 'package:origami/features/product/presentation/cubits/getuserpoints/getuserpoints_cubit.dart';
+import 'package:origami/features/product/presentation/cubits/getuserpoints_cubit/getuserpoints_cubit.dart';
 
 import 'widgets/category_products.dart';
 import 'widgets/products_appbar.dart';
@@ -19,7 +19,6 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  late int points;
   List categoryName = [];
   getCategoriesName() async {
     QuerySnapshot querySnapshot =

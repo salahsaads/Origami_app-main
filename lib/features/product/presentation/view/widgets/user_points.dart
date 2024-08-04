@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
-import 'package:origami/features/product/presentation/cubits/getuserpoints/getuserpoints_cubit.dart';
+import 'package:origami/features/product/presentation/cubits/getuserpoints_cubit/getuserpoints_cubit.dart';
 
 class UserPoints extends StatelessWidget {
   const UserPoints({

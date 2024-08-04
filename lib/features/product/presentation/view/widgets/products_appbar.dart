@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Car/presntion/view/Car_screen.dart';
-import 'package:origami/features/product/presentation/cubits/getuserpoints/getuserpoints_cubit.dart';
+import 'package:origami/features/product/presentation/cubits/getuserpoints_cubit/getuserpoints_cubit.dart';
 import 'package:origami/features/product/presentation/view/widgets/shopping_cart.dart';
 import 'package:origami/features/product/presentation/view/widgets/user_points.dart';
 import 'package:origami/main.dart';
