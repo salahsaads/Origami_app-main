@@ -5,6 +5,8 @@ import 'package:origami/features/favoriteScreen/data/firebase.dart';
 import 'package:origami/features/favoriteScreen/presition/view/Widget/favorite_Item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../Weight/prestion/view_model/widget/Shimmer_Loading_weight.dart';
+
 class Favoritescreen extends StatelessWidget {
   const Favoritescreen({super.key});
 
@@ -16,10 +18,7 @@ class Favoritescreen extends StatelessWidget {
           stream: FirebaseGetFav().getFavorites(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: kPrimarycolor,
-              ));
+              return ShimmerLoadingWeight();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -31,22 +30,14 @@ class Favoritescreen extends StatelessWidget {
 
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1.5,
+                  childAspectRatio: 1.3,
                   mainAxisSpacing: 5,
                   crossAxisCount: 1,
                 ),
                 itemCount: favorites.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onDoubleTap: () async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-
-                      prefs.setBool(favorites[index]['name'], false);
-                      removeFov(
-                        name: favorites[index]['name'],
-                      );
-                    },
+                    onDoubleTap: () async {},
                     child: FavoriteItem(
                       point: favorites[index]['point'],
                       name: favorites[index]['name'],

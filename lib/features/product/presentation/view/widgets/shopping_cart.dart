@@ -33,7 +33,7 @@ class ShoppingCart extends StatelessWidget {
           Container(
             width: 60.w,
             padding: EdgeInsets.symmetric(horizontal: 5.w),
-            height: 55.h,
+            height: 40.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
               color: kSecondarycolor,

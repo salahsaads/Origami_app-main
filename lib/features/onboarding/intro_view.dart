@@ -21,13 +21,12 @@ class Intro extends StatefulWidget {
 }
 
 class _IntroState extends State<Intro> {
-
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,7 +38,7 @@ class _IntroState extends State<Intro> {
               Positioned(
                 child: Container(
                   width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height / 2,
+                  height: MediaQuery.sizeOf(context).height / 3,
                   decoration: const BoxDecoration(
                       color: kSecondarycolor,
                       borderRadius: BorderRadius.only(
@@ -51,25 +50,26 @@ class _IntroState extends State<Intro> {
               Column(
                 children: [
                   SizedBox(
-                    height: 30.h,
+                    height: MediaQuery.sizeOf(context).height / 3 - 180,
                   ),
                   Center(
                       child: Image.asset(
                     widget.image,
-                    width: 300.w,
+                    width: 100.w,
                   )),
                 ],
               )
             ],
           ),
           SizedBox(
-            height: 50.h,
+            height: MediaQuery.sizeOf(context).height / 6 - 100,
           ),
           Text(
             widget.title,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Cairo-Regular',
-                fontSize: 34.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 height: 0.9),
           ),
@@ -80,14 +80,13 @@ class _IntroState extends State<Intro> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Montserrat-Regular',
-                fontSize: 20.sp,
+                fontSize: 15.sp,
+                color: kPrimarycolor,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          SizedBox(
-            height: 110.h,
-          ),
+          Spacer(),
           Row(
             children: [
               SizedBox(
@@ -96,8 +95,8 @@ class _IntroState extends State<Intro> {
               GestureDetector(
                 onTap: widget.ontap,
                 child: Container(
-                  width: 50.w,
-                  height: 50.h,
+                  width: 40.w,
+                  height: 40.h,
                   decoration: const BoxDecoration(
                     color: kPrimarycolor,
                     shape: BoxShape.circle,
@@ -111,6 +110,9 @@ class _IntroState extends State<Intro> {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 10.h,
           )
         ],
       ),

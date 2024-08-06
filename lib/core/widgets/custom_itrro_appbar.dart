@@ -29,7 +29,7 @@ class CustomIntoAppbar extends StatelessWidget {
           Text(
             text!,
             style: TextStyle(
-                fontSize: 28.sp,
+                fontSize: 20.sp,
                 color: kSecondarycolor,
                 fontFamily: 'NotoKufiArabic'),
           ),

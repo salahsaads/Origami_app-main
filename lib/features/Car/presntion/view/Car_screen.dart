@@ -14,6 +14,8 @@ import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../../../Weight/prestion/view_model/widget/Shimmer_Loading_weight.dart';
+
 class Car_screen extends StatefulWidget {
   Car_screen({super.key, required this.number, required this.allpoint});
   var number;
@@ -76,102 +78,105 @@ class _Car_screenState extends State<Car_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                if (widget.allpoint >= DataGloble.PointAll &&
-                    DataGloble.PointAll > 0) {
-                  openWhatsApp();
-                } else {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.warning,
-                    headerAnimationLoop: true,
-                    animType: AnimType.bottomSlide,
-                    title:
-                        'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
-                    titleTextStyle: TextStyle(
-                        fontSize: 24.sp,
-                        fontFamily: kFontfamily,
-                        color: Colors.black),
-                  ).show();
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(left: 30.w),
-                alignment: Alignment.center,
-                width: 200,
-                height: 40.h,
-                decoration: BoxDecoration(
-                    color: kPrimarycolor,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        topLeft: Radius.circular(10))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 20.w,
-                    ),
-                    Text(
-                      'تواصل',
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontFamily: kFontfamily,
-                        color: kSecondarycolor,
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  if (widget.allpoint >= DataGloble.PointAll &&
+                      DataGloble.PointAll > 0) {
+                    openWhatsApp();
+                  } else {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      headerAnimationLoop: true,
+                      animType: AnimType.bottomSlide,
+                      title:
+                          'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
+                      titleTextStyle: TextStyle(
+                          fontSize: 24.sp,
+                          fontFamily: kFontfamily,
+                          color: Colors.black),
+                    ).show();
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 140.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                      color: kPrimarycolor,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          topLeft: Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: Colors.white,
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        width: 20.w,
+                      ),
+                      Text(
+                        'تواصل',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontFamily: kFontfamily,
+                          color: kSecondarycolor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                if (widget.allpoint >= DataGloble.PointAll &&
-                    DataGloble.PointAll > 0) {
-                  launchUrlString("tel://01063012453");
-                } else {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.warning,
-                    headerAnimationLoop: true,
-                    animType: AnimType.bottomSlide,
-                    title:
-                        'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
-                    titleTextStyle: TextStyle(
-                        fontSize: 24.sp,
-                        fontFamily: kFontfamily,
-                        color: Colors.black),
-                  ).show();
-                }
-              },
-              child: Container(
-                alignment: Alignment.center,
-                width: 150.w,
-                height: 40.h,
-                decoration: BoxDecoration(
-                    border: Border.all(color: kPrimarycolor),
-                    color: kSecondarycolor,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10),
-                        topRight: Radius.circular(10))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.phone,
-                      color: Colors.black,
-                    )
-                  ],
+              GestureDetector(
+                onTap: () {
+                  if (widget.allpoint >= DataGloble.PointAll &&
+                      DataGloble.PointAll > 0) {
+                    launchUrlString("tel://01063012453");
+                  } else {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      headerAnimationLoop: true,
+                      animType: AnimType.bottomSlide,
+                      title:
+                          'لا يوجد نقاط كافيه بحاجه الي ${DataGloble.PointAll - widget.allpoint}',
+                      titleTextStyle: TextStyle(
+                          fontSize: 24.sp,
+                          fontFamily: kFontfamily,
+                          color: Colors.black),
+                    ).show();
+                  }
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 140.w,
+                  height: 40.h,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: kPrimarycolor),
+                      color: kSecondarycolor,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: Colors.black,
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         appBar: AppBar(
           backgroundColor: kPrimarycolor,
@@ -193,7 +198,7 @@ class _Car_screenState extends State<Car_screen> {
                     .get(),
                 builder: (context, snap) {
                   if (snap.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return ShimmerLoadingWeight();
                   } else if (snap.hasError) {
                     return Center(child: Text('Error: ${snap.error}'));
                   } else if (!snap.hasData || snap.data!.docs.isEmpty) {
@@ -202,7 +207,7 @@ class _Car_screenState extends State<Car_screen> {
                     return GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 1.3,
+                        childAspectRatio: 1.14,
                         mainAxisSpacing: 5,
                         crossAxisCount: 1,
                       ),

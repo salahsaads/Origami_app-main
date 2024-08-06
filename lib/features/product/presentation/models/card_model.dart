@@ -9,15 +9,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../core/Theme/constant.dart';
 
 class CardModel extends StatefulWidget {
-  const CardModel({
-    super.key,
-    required this.image,
-    required this.productname,
-    required this.productpoints,
-  });
+  const CardModel(
+      {super.key,
+      required this.image,
+      required this.productname,
+      required this.productpoints,
+      required this.addornot,
+      required this.details});
   final String image;
   final String productname;
   final int productpoints;
+  final bool addornot;
+  final String details;
 
   @override
   State<CardModel> createState() => _CardModelState();
@@ -43,30 +46,6 @@ class _CardModelState extends State<CardModel> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        if (fev == true) {
-          prefs.setBool(widget.productname, false);
-          removeFov(
-            name: widget.productname,
-          );
-          setState(() {
-            fev = false;
-            //delate;
-          });
-        } else if (fev == false || fev == null) {
-          prefs.setBool(widget.productname, true);
-          Add_Fov(
-              name: widget.productname,
-              Image: widget.image,
-              point: widget.productpoints);
-
-          setState(() {
-            fev = true;
-          });
-        }
-      },
       child: Container(
         // height: 200.h,
         // width: 150.w,
@@ -89,8 +68,33 @@ class _CardModelState extends State<CardModel> {
                             image: CachedNetworkImageProvider(widget.image))),
                   ),
                   Positioned(
-                      right: 2,
-                      top: 5,
+                    right: 2,
+                    child: GestureDetector(
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+
+                        if (fev == true) {
+                          prefs.setBool(widget.productname, false);
+                          removeFov(
+                            name: widget.productname,
+                          );
+                          setState(() {
+                            fev = false;
+                            //delate;
+                          });
+                        } else if (fev == false || fev == null) {
+                          prefs.setBool(widget.productname, true);
+                          Add_Fov(
+                              name: widget.productname,
+                              Image: widget.image,
+                              point: widget.productpoints);
+
+                          setState(() {
+                            fev = true;
+                          });
+                        }
+                      },
                       child: fev != null
                           ? fev == true
                               ? Icon(
@@ -106,7 +110,9 @@ class _CardModelState extends State<CardModel> {
                           : Icon(
                               Icons.favorite_border,
                               size: 28,
-                            ))
+                            ),
+                    ),
+                  )
                 ],
               ),
               SizedBox(
@@ -151,6 +157,11 @@ class _CardModelState extends State<CardModel> {
                   // ),
                 ],
               ),
+              widget.addornot
+                  ? CustomScreenDetails(
+                      details: widget.details,
+                    )
+                  : Container(),
               ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(backgroundColor: kPrimarycolor),
@@ -180,9 +191,10 @@ class _CardModelState extends State<CardModel> {
                     ).show();
                   },
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
+                        textAlign: TextAlign.center,
                         "  الاضافه الي السله ",
                         style: TextStyle(
                             fontSize: 8.sp,
@@ -200,6 +212,33 @@ class _CardModelState extends State<CardModel> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomScreenDetails extends StatelessWidget {
+  const CustomScreenDetails({super.key, required this.details});
+  final String details;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 20.h,
+        ),
+        Text(
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontFamily: kFontfamily,
+                fontSize: 10.sp,
+                fontWeight: FontWeight.bold,
+                color: kPrimarycolor),
+            details),
+        SizedBox(
+          height: 20.h,
+        ),
+      ],
     );
   }
 }

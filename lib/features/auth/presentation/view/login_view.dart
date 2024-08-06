@@ -57,11 +57,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: "مرحبا بك",
                   ),
                   SizedBox(
-                    height: 50.h,
+                    height: 10.h,
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    width: 100.w,
+                    width: 50.w,
                   ),
                   Form(
                       key: formstate,

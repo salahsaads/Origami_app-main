@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/DataGloble/DataGloble.dart';
-import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 import 'package:origami/features/Weight/prestion/view_model/widget/Item_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
+import '../view_model/widget/Shimmer_Loading_weight.dart';
+
 class Weight extends StatelessWidget {
   const Weight({super.key});
   final String phoneNumber =
       '+20 114 071 0570'; // Replace with actual phone number
 
-  void _launchMessenger() async {
+  Future<void> _launchMessenger() async {
     const messengerUrl = 'http://ms.me/1Calmcalm';
     if (await canLaunch(messengerUrl)) {
       await launch(messengerUrl);
@@ -33,24 +34,26 @@ class Weight extends StatelessWidget {
           final Cubit = BlocProvider.of<WeightCubit>(context);
 
           return Scaffold(
-            floatingActionButton: Padding(
-              padding: EdgeInsets.only(bottom: 30.h),
+            bottomNavigationBar: Padding(
+              padding: EdgeInsets.only(bottom: 60.h),
               child: Container(
                 width: double.infinity,
                 height: 80.w,
                 color: Color(0xfffef7ff),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     //point all
                     Padding(
-                      padding: EdgeInsets.only(left: 55.w),
+                      padding: EdgeInsets.only(left: 20.w),
                       child: Container(
                         alignment: Alignment.center,
-                        width: 60,
+                        width: 70,
                         height: 45,
                         child: Text(
                           '${Cubit.sumall}',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold),
                         ),
                         decoration: BoxDecoration(
                             color: Colors.amber,
@@ -58,62 +61,56 @@ class Weight extends StatelessWidget {
                       ),
                     ),
                     //whatsapp
-                    Padding(
-                      padding: EdgeInsets.only(left: 30.w),
-                      child: GestureDetector(
-                        onTap: () async {
-                          final String url =
-                              'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} الاجمالي ${DataGloble.KProdect}  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
-                          print('Attempting to launch URL: $url');
-                          try {
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              print('Could not launch $url');
-                              throw 'Could not launch $url';
-                            }
-                          } catch (e) {
-                            print('Error: $e');
+                    GestureDetector(
+                      onTap: () async {
+                        final String url =
+                            'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} الاجمالي ${DataGloble.KProdect}  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
+                        print('Attempting to launch URL: $url');
+                        try {
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            print('Could not launch $url');
+                            throw 'Could not launch $url';
                           }
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: 60,
-                          height: 45,
-                          child: FaIcon(FontAwesomeIcons.whatsapp),
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
+                        } catch (e) {
+                          print('Error: $e');
+                        }
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 70,
+                        height: 45,
+                        child: FaIcon(FontAwesomeIcons.whatsapp),
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                     ),
                     // phone
-                    Padding(
-                      padding: EdgeInsets.only(left: 30.w),
-                      child: GestureDetector(
-                        onTap: () {
-                          _launchMessenger();
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          width: 60,
-                          height: 45,
-                          child: Icon(Icons.facebook),
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
+                    GestureDetector(
+                      onTap: () {
+                        _launchMessenger();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 70,
+                        height: 45,
+                        child: Icon(Icons.facebook),
+                        decoration: BoxDecoration(
+                            color: Colors.amber,
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 30.w),
+                      padding: EdgeInsets.only(right: 20.w),
                       child: GestureDetector(
                         onTap: () {
                           launchUrlString("tel://01063012453");
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          width: 60,
+                          width: 70,
                           height: 45,
                           child: Icon(Icons.phone),
                           decoration: BoxDecoration(
@@ -127,11 +124,7 @@ class Weight extends StatelessWidget {
               ),
             ),
             body: state is WeightLoading
-                ? Center(
-                    child: CircularProgressIndicator(
-                      color: kPrimarycolor,
-                    ),
-                  )
+                ? ShimmerLoadingWeight()
                 : state != WeightError
                     ? ListView.builder(
                         addAutomaticKeepAlives: false,

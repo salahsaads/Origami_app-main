@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../bussinus_logic/authentiacation/authentication.dart';
+
 class FavoriteItem extends StatefulWidget {
   const FavoriteItem(
       {super.key,
@@ -45,9 +47,20 @@ class _FavoriteItemState extends State<FavoriteItem> {
                 Positioned(
                     right: 2,
                     top: 5,
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.red,
+                    child: GestureDetector(
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+
+                        prefs.setBool(widget.name, false);
+                        removeFov(
+                          name: widget.name,
+                        );
+                      },
+                      child: Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      ),
                     ))
               ],
             ),

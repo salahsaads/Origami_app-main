@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_type_check
 
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +30,12 @@ void main() async {
   );
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
-    runApp(const Origami());
+    runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => Origami(), // Wrap your app
+      ),
+    );
   });
 }
 

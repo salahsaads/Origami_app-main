@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
+
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../../models/card_model.dart';
 
@@ -49,10 +49,40 @@ class _CategoryProductsState extends State<CategoryProducts> {
         ),
         itemCount: categoryProducts.length,
         scrollDirection: widget.dir,
-        itemBuilder: (context, index) => CardModel(
-          image: categoryProducts[index]['image'],
-          productname: categoryProducts[index]['name'],
-          productpoints: categoryProducts[index]['point'],
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            WoltModalSheet.show<void>(
+              // pageIndexNotifier: pageIndexNotifier,
+              context: context,
+              pageListBuilder: (modalSheetContext) {
+                return [
+                  WoltModalSheetPage(
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      child: Column(
+                        children: [
+                          CardModel(
+                            details: categoryProducts[index]['details'],
+                            addornot: true,
+                            image: categoryProducts[index]['image'],
+                            productname: categoryProducts[index]['name'],
+                            productpoints: categoryProducts[index]['point'],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ];
+              },
+            );
+          },
+          child: CardModel(
+            details: categoryProducts[index]['details'],
+            addornot: false,
+            image: categoryProducts[index]['image'],
+            productname: categoryProducts[index]['name'],
+            productpoints: categoryProducts[index]['point'],
+          ),
         ),
       ),
     );

@@ -8,6 +8,8 @@ import 'package:origami/core/widgets/custom_button.dart';
 import 'package:origami/features/profile/data/network.dart';
 import 'package:origami/features/profile/prestion/view_model/profile_model.dart';
 
+import '../../../../main.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -17,8 +19,11 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   ProfileModel? profileModel;
+  String? userphone;
   getdata() async {
-    profileModel = await FirbaseGet.GetData('01063012453');
+    userphone = await pref.getString('phoneNumber');
+
+    profileModel = await FirbaseGet.GetData(userphone!);
     setState(() {});
   }
 
@@ -124,6 +129,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ontap: () {
                             logout(context: context);
                           },
+                        ),
+                        SizedBox(
+                          height: 30.h,
                         ),
                       ],
                     ),

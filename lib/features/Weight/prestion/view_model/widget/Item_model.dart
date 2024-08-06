@@ -36,7 +36,7 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
     final Cubit = BlocProvider.of<WeightCubit>(context);
 
     return Container(
-      height: 250.w,
+      height: 300.w,
       width: 160.w,
       decoration: BoxDecoration(
           border: Border.all(color: kPrimarycolor, width: 0.2.w),
@@ -44,6 +44,7 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
@@ -99,24 +100,6 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "   ${qu * widget.productpoints} ",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: kFontfamily,
-                      fontSize: 14.sp,
-                      color: kPrimarycolor,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  " النقط الكلي ",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: kFontfamily,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold),
-                ),
-                Spacer(),
-                Text(
                   "كيلوا",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
@@ -150,12 +133,31 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 15.h,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  "   ${qu * widget.productpoints} ",
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: kFontfamily,
+                      fontSize: 14.sp,
+                      color: kPrimarycolor,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  " النقط الكلي ",
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: kFontfamily,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Spacer(),
                 Text(
                   "انقاص",
                   textDirection: TextDirection.rtl,

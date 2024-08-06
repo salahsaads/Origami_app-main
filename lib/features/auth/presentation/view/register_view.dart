@@ -47,7 +47,7 @@ class RegisterBody extends StatelessWidget {
           ),
           Image.asset(
             'assets/images/logo.png',
-            width: 100.w,
+            width: 50.w,
           ),
           const RegisterForm()
         ],
