@@ -61,6 +61,17 @@ class AuthCubit extends Cubit<AuthState> {
     required String location,
     required BuildContext context,
   }) async {
+    // Regex pattern for a strong password
+    final strongPasswordPattern = RegExp(
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+
+    // Check if the password is strong
+    if (!strongPasswordPattern.hasMatch(pass.trim())) {
+      emit(AuthError("كلمة المرور ضعيفة",
+          "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، منها حرف كبير، حرف صغير، رقم ورمز خاص."));
+      return;
+    }
+
     try {
       await FirebaseFirestore.instance
           .collection('users')
@@ -70,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
         'phoneNumber': phone.trim(),
         'password': encryptData.encryptPassword(pass.trim()),
         'points': 0,
-        'location': location.trim()
+        'location': location.trim(),
       });
 
       SharedPreferences prefs = await SharedPreferences.getInstance();

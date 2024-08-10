@@ -11,7 +11,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   getdata(String number) async {
     emit(ProfileLoading());
     try {
-      ProfileModel profileModel = await FirbaseGet.GetData(number);
+      ProfileModel profileModel = await FirbaseGet.getData(number);
       profileModel1 = profileModel;
       emit(ProfileLoaded());
     } catch (e) {

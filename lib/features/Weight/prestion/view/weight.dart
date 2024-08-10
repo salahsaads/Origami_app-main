@@ -140,7 +140,7 @@ class Weight extends StatelessWidget {
                           );
                         },
                       )
-                    : Center(
+                    : const Center(
                         child: Text(
                           'Error',
                           style: TextStyle(fontWeight: FontWeight.bold),

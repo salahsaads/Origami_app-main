@@ -7,6 +7,7 @@ import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/Car/presntion/view/Car_screen.dart';
 import 'package:origami/features/product/presentation/view/widgets/shopping_cart.dart';
 import 'package:origami/features/product/presentation/view/widgets/user_points.dart';
+import 'package:origami/features/productsSearch/presentation/views/product_search_view.dart';
 import 'package:origami/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,7 +43,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
   getdata() async {
     userphone = await pref.getString('phoneNumber');
 
-    profileModel = await FirbaseGet.GetData(userphone!);
+    profileModel = await FirbaseGet.getData(userphone!);
     setState(() {});
   }
 
@@ -120,19 +121,25 @@ class _ProductAppBarState extends State<ProductAppBar> {
                     borderRadius: BorderRadius.circular(10.r),
                     color: kSecondarycolor,
                   ),
-                  child: Row(
-                    children: [
-                      const Expanded(child: SizedBox()),
-                      Text(
-                        "ما الذي تبحث عنه؟",
-                        style:
-                            TextStyle(fontSize: 15.sp, fontFamily: kFontfamily),
-                      ),
-                      Icon(
-                        Icons.search,
-                        size: 30.sp,
-                      ),
-                    ],
+                  child: GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProductsSearchView())),
+                    child: Row(
+                      children: [
+                        const Expanded(child: SizedBox()),
+                        Text(
+                          "ما الذي تبحث عنه؟",
+                          style: TextStyle(
+                              fontSize: 15.sp, fontFamily: kFontfamily),
+                        ),
+                        Icon(
+                          Icons.search,
+                          size: 30.sp,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

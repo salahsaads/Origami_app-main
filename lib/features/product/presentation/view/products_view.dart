@@ -72,11 +72,10 @@ class _ProductsState extends State<Products> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
                         mainAxisSpacing: 10,
-                        childAspectRatio: 1.3,
+                        childAspectRatio: 1.5,
                       ),
                       itemCount: categoryName.length,
                       itemBuilder: (context, index) => Column(

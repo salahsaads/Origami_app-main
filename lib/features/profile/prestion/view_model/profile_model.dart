@@ -6,7 +6,7 @@ class ProfileModel {
 
   ProfileModel(
       {required this.location,
-      required this.name,
+      this.name,
       required this.number,
       required this.point});
 

@@ -14,6 +14,7 @@ import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
 import 'package:origami/features/auth/presentation/view/login_view.dart';
 
 import 'package:origami/features/onboarding/onboarding_view.dart';
+import 'package:origami/features/productsSearch/cubits/productsearch/productsearch_cubit.dart';
 import 'package:origami/features/register/prestion/view/register_screen.dart';
 import 'package:origami/features/screens/splah_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,7 +34,7 @@ void main() async {
     runApp(
       DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => Origami(), // Wrap your app
+        builder: (context) => const Origami(), // Wrap your app
       ),
     );
   });
@@ -60,8 +61,13 @@ class CustomMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(
+            create: (context) =>
+                ProductsearchCubit()..getAllProductsByCategories()),
+      ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(),

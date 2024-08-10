@@ -50,7 +50,10 @@ class _CardModelState extends State<CardModel> {
         // height: 200.h,
         // width: 150.w,
         decoration: BoxDecoration(
-            border: Border.all(color: kPrimarycolor, width: 0.2.w),
+            border: Border(
+                top: BorderSide(color: kPrimarycolor, width: 0.2.w),
+                right: BorderSide(color: kPrimarycolor, width: 0.2.w),
+                left: BorderSide(color: kPrimarycolor, width: 0.2.w)),
             borderRadius: BorderRadius.circular(10.r)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
@@ -60,7 +63,7 @@ class _CardModelState extends State<CardModel> {
               Stack(
                 children: [
                   Container(
-                    height: 80.h,
+                    height: 50.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         color: kSecondarycolor,
