@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/core/Theme/constant.dart';
+import 'package:origami/core/utils/telecom_data.dart';
 import 'package:origami/features/Car/presntion/view_model/car_prodect_model.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,10 +27,9 @@ class Car_screen extends StatefulWidget {
 
 class _Car_screenState extends State<Car_screen> {
   final int ProdectNumber = 0;
-  final String phoneNumber =
-      '+20 114 071 0570'; // Replace with actual phone number
+  // Replace with actual phone number
 
-  void openWhatsApp() async {
+  void openWhatsApp(String phoneNumber) async {
     final String url =
         'https://wa.me/$phoneNumber?text=${Uri.encodeComponent('  ❤️ ${DataGloble.PointAll} الاجمالي ${DataGloble.Prodect}  السلام عليكم  اريد التواصل معكم لاستبدال مونتجات ')}';
     print('Attempting to launch URL: $url');
@@ -87,7 +87,7 @@ class _Car_screenState extends State<Car_screen> {
                 onTap: () {
                   if (widget.allpoint >= DataGloble.PointAll &&
                       DataGloble.PointAll > 0) {
-                    openWhatsApp();
+                    openWhatsApp(whatsapp);
                   } else {
                     AwesomeDialog(
                       context: context,
@@ -138,7 +138,7 @@ class _Car_screenState extends State<Car_screen> {
                 onTap: () {
                   if (widget.allpoint >= DataGloble.PointAll &&
                       DataGloble.PointAll > 0) {
-                    launchUrlString("tel://01063012453");
+                    launchUrlString(call);
                   } else {
                     AwesomeDialog(
                       context: context,
@@ -191,11 +191,11 @@ class _Car_screenState extends State<Car_screen> {
           padding: EdgeInsets.only(left: 8, right: 8, top: 16),
           child: SizedBox(
               height: MediaQuery.sizeOf(context).height - 200,
-              child: FutureBuilder(
-                future: FirebaseFirestore.instance
+              child: StreamBuilder(
+                stream: FirebaseFirestore.instance
                     .collection('Product_In_Car')
                     .where('user_number', isEqualTo: widget.number)
-                    .get(),
+                    .snapshots(), // Use snapshots() instead of get()
                 builder: (context, snap) {
                   if (snap.connectionState == ConnectionState.waiting) {
                     return ShimmerLoadingWeight();
@@ -217,10 +217,8 @@ class _Car_screenState extends State<Car_screen> {
                             as Map<String, dynamic>;
                         return CardModel2(
                           image: product['image'],
-                          productname: product[
-                              'productname'], // Assuming the field is named 'productname'
-                          productpoints: product[
-                              'productpoints'], // Assuming the field is named 'productpoints'
+                          productname: product['productname'],
+                          productpoints: product['productpoints'],
                         );
                       },
                     );

@@ -99,14 +99,6 @@ class _FavoriteItemState extends State<FavoriteItem> {
                       fontWeight: FontWeight.bold,
                       color: kPrimarycolor),
                 ),
-                Text(
-                  "1 كيلو : ",
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: kFontfamily,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold),
-                ),
               ],
             ),
             SizedBox(

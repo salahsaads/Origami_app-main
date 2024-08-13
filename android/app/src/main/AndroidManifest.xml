@@ -3,7 +3,7 @@
 
 
     <application
-        android:label="origami"
+        android:label="Alhassala"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

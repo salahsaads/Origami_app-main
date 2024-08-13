@@ -12,69 +12,62 @@ class ShimmerLoading extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h), // Responsive height
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r), // Responsive padding
               child: Container(
-                width: 150,
-                height: 20,
+                width: 150.w, // Responsive width
+                height: 20.h, // Responsive height
                 color: Colors.grey[300],
               ),
             ),
             SizedBox(height: 10.h),
-            // Shimmer for Title/Description
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r),
               child: Row(
                 children: [
                   Container(
                     width: 300.w,
-                    height: 200,
+                    height: 200.h, // Responsive height
                     color: Colors.grey[300],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  SizedBox(width: 20.w), // Responsive width
                   Container(
                     width: 300.w,
-                    height: 200,
+                    height: 200.h,
                     color: Colors.grey[300],
                   ),
                 ],
               ),
             ),
             SizedBox(height: 10.h),
-
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r),
               child: Container(
-                width: 150,
-                height: 20,
+                width: 150.w,
+                height: 20.h,
                 color: Colors.grey[300],
               ),
             ),
             SizedBox(height: 10.h),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0.r),
               child: Row(
                 children: [
                   Container(
                     width: 300.w,
-                    height: 200,
+                    height: 200.h,
                     color: Colors.grey[300],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  SizedBox(width: 20.w),
                   Container(
                     width: 300.w,
-                    height: 200,
+                    height: 200.h,
                     color: Colors.grey[300],
                   ),
                 ],
               ),
             ),
-            // Add more shimmer containers if necessary to match your UI
           ],
         ),
       ),

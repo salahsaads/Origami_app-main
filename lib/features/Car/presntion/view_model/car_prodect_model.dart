@@ -203,17 +203,19 @@ class _CardModel2State extends State<CardModel2> {
                           await doc.reference.delete();
                         }
 
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.success,
-                          headerAnimationLoop: true,
-                          animType: AnimType.bottomSlide,
-                          title: "تم الحذف من السله ",
-                          titleTextStyle: TextStyle(
-                              fontSize: 24.sp,
-                              fontFamily: kFontfamily,
-                              color: Colors.black),
-                        ).show();
+                        if (mounted) {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.success,
+                            headerAnimationLoop: true,
+                            animType: AnimType.bottomSlide,
+                            title: "تم الحذف من السلة",
+                            titleTextStyle: TextStyle(
+                                fontSize: 24.sp,
+                                fontFamily: kFontfamily,
+                                color: Colors.black),
+                          ).show();
+                        }
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

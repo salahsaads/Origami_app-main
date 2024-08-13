@@ -113,19 +113,21 @@ class _ProductAppBarState extends State<ProductAppBar> {
                     userphone: userphone,
                     points: 0,
                     querySnapshot2: querySnapshot2),
-                Container(
-                  width: MediaQuery.sizeOf(context).width - 90.w,
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: kSecondarycolor,
-                  ),
-                  child: GestureDetector(
-                    onTap: () => Navigator.push(
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProductsSearchView())),
+                            builder: (context) => ProductsSearchView()));
+                  },
+                  child: Container(
+                    width: MediaQuery.sizeOf(context).width - 90.w,
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.r),
+                      color: kSecondarycolor,
+                    ),
                     child: Row(
                       children: [
                         const Expanded(child: SizedBox()),

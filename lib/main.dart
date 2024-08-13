@@ -33,7 +33,7 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(
       DevicePreview(
-        enabled: !kReleaseMode,
+        enabled: true,
         builder: (context) => const Origami(), // Wrap your app
       ),
     );

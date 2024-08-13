@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/productsSearch/cubits/productsearch/productsearch_cubit.dart';
+import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
+
+import '../../../../product/presentation/models/card_model.dart';
 
 class ProductSearchDelegate extends SearchDelegate {
   @override
@@ -35,30 +40,106 @@ class ProductSearchDelegate extends SearchDelegate {
     return BlocBuilder<ProductsearchCubit, ProductsearchState>(
       builder: (context, state) {
         if (state is ProductsLoading) {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: kPrimarycolor));
         } else if (state is ProductsLoaded) {
           if (state.products.isEmpty) {
-            return Center(child: Text('No products found'));
+            return Center(
+                child: Text(
+              'No products found',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.sp,
+                height: 0.2,
+                fontFamily: kFontfamily,
+              ),
+            ));
           }
 
           return ListView(
             children: state.products.entries.map((entry) {
-              return ExpansionTile(
-                title: Text(entry.key), // Category name
-                children: entry.value.map((product) {
-                  return ListTile(
-                    title: Text(product['name']),
-                    // subtitle: Text('Price: ${product['price']}'),
-                  );
-                }).toList(),
+              return Container(
+                color: kPrimarycolor,
+                child: ExpansionTile(
+                  title: Text(
+                    entry.key,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12.sp,
+                      fontFamily: kFontfamily,
+                    ),
+                  ), // Category name
+                  children: entry.value.map((product) {
+                    return GestureDetector(
+                      onTap: () {
+                        WoltModalSheet.show<void>(
+                          // pageIndexNotifier: pageIndexNotifier,
+                          context: context,
+                          pageListBuilder: (modalSheetContext) {
+                            return [
+                              WoltModalSheetPage(
+                                backgroundColor: Colors.white,
+                                child: Container(
+                                  child: Column(
+                                    children: [
+                                      CardModel(
+                                        details: product['details'],
+                                        addornot: true,
+                                        image: product['image'],
+                                        productname: product['name'],
+                                        productpoints: product['point'],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ];
+                          },
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(color: kSecondarycolor),
+                        child: ListTile(
+                          title: Text(
+                            product['name'],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                              color: kPrimarycolor,
+                              fontFamily: kFontfamily,
+                            ),
+                          ),
+                          // subtitle: Text('Price: ${product['price']}'),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
               );
             }).toList(),
           );
         } else if (state is ProductsError) {
-          return Center(child: Text('Error: ${state.message}'));
+          return Center(
+              child: Text(
+            'Error: ${state.message}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20.sp,
+              height: 0.2,
+              fontFamily: kFontfamily,
+            ),
+          ));
         }
 
-        return Center(child: Text('Type to search for products'));
+        return Center(
+            child: Text(
+          'Type to search for products',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.sp,
+            height: 0.2,
+            fontFamily: kFontfamily,
+          ),
+        ));
       },
     );
   }

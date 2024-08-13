@@ -13,6 +13,17 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+
+  bool t = false;
+  void changeIcon() {
+    if (t == false) {
+      t = true;
+    } else {
+      t = false;
+    }
+    emit(AuthInitial());
+  }
+
   Encryption encryptData = Encryption();
   Future<void> login({
     required TextEditingController phone,
