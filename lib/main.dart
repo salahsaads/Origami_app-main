@@ -12,10 +12,10 @@ import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 import 'package:origami/features/Nav/prestion/view/nav_bar.dart';
 import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
 import 'package:origami/features/auth/presentation/view/login_view.dart';
+import 'package:origami/features/auth/presentation/view/register_view.dart';
 
 import 'package:origami/features/onboarding/onboarding_view.dart';
 import 'package:origami/features/productsSearch/cubits/productsearch/productsearch_cubit.dart';
-import 'package:origami/features/register/prestion/view/register_screen.dart';
 import 'package:origami/features/screens/splah_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
