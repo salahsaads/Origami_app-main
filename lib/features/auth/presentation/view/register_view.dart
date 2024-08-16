@@ -26,32 +26,21 @@ class RegisterScreen extends StatelessWidget {
           }
         },
         child: Scaffold(
-          body: RegisterBody(),
-        ));
-  }
-}
-
-class RegisterBody extends StatelessWidget {
-  const RegisterBody({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const CustomIntoAppbar(text: 'إنشاء حساب جديد'),
-          SizedBox(
-            height: 10.h,
+            body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const CustomIntoAppbar(text: 'إنشاء حساب جديد'),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 30,
+              ),
+              Image.asset(
+                'assets/images/logo.png',
+                width: MediaQuery.of(context).size.width / 3,
+                height: MediaQuery.of(context).size.width / 4,
+              ),
+              const RegisterForm()
+            ],
           ),
-          Image.asset(
-            'assets/images/logo.png',
-            width: 50.w,
-          ),
-          const RegisterForm()
-        ],
-      ),
-    );
+        )));
   }
 }

@@ -12,7 +12,7 @@ class CustomIntoAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: MediaQuery.sizeOf(context).height / 7,
       width: MediaQuery.sizeOf(context).width,
       decoration: const BoxDecoration(
         color: kPrimarycolor,
@@ -24,14 +24,18 @@ class CustomIntoAppbar extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 50.h,
+            height: MediaQuery.sizeOf(context).height / 17,
           ),
           Text(
             text!,
             style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 28.sp,
                 color: kSecondarycolor,
-                fontFamily: 'NotoKufiArabic'),
+                fontFamily: 'NotoKufiArabic',
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height / 100,
           ),
         ],
       ),

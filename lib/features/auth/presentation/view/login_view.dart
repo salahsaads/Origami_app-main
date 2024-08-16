@@ -57,11 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: "مرحبا بك",
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: MediaQuery.of(context).size.height / 20,
                   ),
                   Image.asset(
                     'assets/images/logo.png',
-                    width: 50.w,
+                    width: MediaQuery.of(context).size.width / 3,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 40,
                   ),
                   Form(
                       key: formstate,
@@ -79,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               maxLength: 11,
                             ),
                             SizedBox(
-                              height: 10.h,
+                              height: MediaQuery.of(context).size.height / 50,
                             ),
                             CustomTextField(
                               obscure: true,
@@ -89,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               controller: _passwordController,
                             ),
                             SizedBox(
-                              height: 20.h,
+                              height: MediaQuery.of(context).size.height / 35,
                             ),
                             CustomButton(
                               ontap: () async {
@@ -142,7 +145,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           ],
                         ),
-                      ))
+                      )),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 35,
+                  ),
                 ],
               ),
             ),

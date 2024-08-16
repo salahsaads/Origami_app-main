@@ -45,7 +45,7 @@ class _RegisterFormState extends State<RegisterForm> {
     return Form(
       key: form,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           children: [
             CustomTextField(
@@ -56,7 +56,7 @@ class _RegisterFormState extends State<RegisterForm> {
               controller: name,
             ),
             SizedBox(
-              height: 5.h,
+              height: MediaQuery.of(context).size.height / 50,
             ),
             CustomTextField(
               obscure: false,
@@ -68,7 +68,7 @@ class _RegisterFormState extends State<RegisterForm> {
               maxLength: 11,
             ),
             SizedBox(
-              height: 5.h,
+              height: MediaQuery.of(context).size.height / 50,
             ),
             CustomTextField(
               obscure: true,
@@ -78,7 +78,7 @@ class _RegisterFormState extends State<RegisterForm> {
               controller: pass,
             ),
             SizedBox(
-              height: 5.h,
+              height: MediaQuery.of(context).size.height / 50,
             ),
             CustomTextField(
               obscure: false,
@@ -87,8 +87,8 @@ class _RegisterFormState extends State<RegisterForm> {
               icon: Icons.location_on,
               controller: location_on,
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 30,
             ),
             CustomButton(
               ontap: () async {

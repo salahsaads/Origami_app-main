@@ -40,6 +40,7 @@ class CustomTextField extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
+            SizedBox(height: 8.h),
             !obscure
                 ? TextFormField(
                     obscureText: obscure,

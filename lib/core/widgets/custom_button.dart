@@ -16,7 +16,8 @@ class CustomButton extends StatelessWidget {
       onTap: ontap,
       child: Container(
         width: MediaQuery.sizeOf(context).width,
-        height: 30.w,
+        // height: 45.h,
+        height: MediaQuery.sizeOf(context).height / 15,
         decoration: BoxDecoration(
             color: kPrimarycolor,
             borderRadius: BorderRadius.circular(
@@ -26,7 +27,7 @@ class CustomButton extends StatelessWidget {
             child: Text(
           text,
           style: TextStyle(
-              fontSize: 15.sp,
+              fontSize: 20.sp,
               fontFamily: 'NotoKufiArabic',
               fontWeight: FontWeight.bold,
               color: kSecondarycolor),
