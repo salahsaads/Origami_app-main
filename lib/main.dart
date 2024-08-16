@@ -32,10 +32,11 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
     runApp(
-      DevicePreview(
-        enabled: true,
-        builder: (context) => const Origami(), // Wrap your app
-      ),
+      //   DevicePreview(
+      //     enabled: true,
+      //     builder: (context) =>
+      // );
+      const Origami(), // Wrap your app
     );
   });
 }

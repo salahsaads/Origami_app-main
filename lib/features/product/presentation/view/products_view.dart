@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
+import 'package:origami/features/product/presentation/cubits/get_categories_cubit/get_categories_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../cubits/getuserpoints/getuserpoints_cubit.dart';
@@ -114,9 +115,12 @@ class _ProductsState extends State<Products> {
                           SizedBox(
                             height: 15.h,
                           ),
-                          CategoryProducts(
-                            dir: Axis.horizontal,
-                            collectionpath: '${categoryName[index].id}',
+                          BlocProvider(
+                            create: (context) => GetCategoriesCubit()
+                              ..getcategoryproduct('${categoryName[index].id}'),
+                            child: CategoryProducts(
+                              dir: Axis.horizontal,
+                            ),
                           ),
                         ],
                       ),

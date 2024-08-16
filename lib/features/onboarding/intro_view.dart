@@ -22,56 +22,46 @@ class Intro extends StatefulWidget {
 
 class _IntroState extends State<Intro> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      height: double.infinity,
       color: Colors.white,
       child: Column(
         children: [
-          Stack(
-            children: [
-              Positioned(
-                child: Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height / 3,
-                  decoration: const BoxDecoration(
-                      color: kSecondarycolor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.elliptical(200, 70),
-                        bottomRight: Radius.elliptical(200, 70),
-                      )),
+          Container(
+            width: MediaQuery.sizeOf(context).width,
+            height: MediaQuery.sizeOf(context).height / 2,
+            decoration: const BoxDecoration(
+                color: kSecondarycolor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.elliptical(200, 70),
+                  bottomRight: Radius.elliptical(200, 70),
+                )),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 30.h,
                 ),
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: MediaQuery.sizeOf(context).height / 3 - 180,
-                  ),
-                  Center(
-                      child: Image.asset(
-                    widget.image,
-                    width: 100.w,
-                  )),
-                ],
-              )
-            ],
+                Center(
+                    child: Image.asset(
+                  widget.image,
+                  height: MediaQuery.sizeOf(context).height / 2.5,
+                )),
+              ],
+            ),
           ),
           SizedBox(
-            height: MediaQuery.sizeOf(context).height / 6 - 100,
+            height: MediaQuery.sizeOf(context).height / 14,
           ),
           Text(
             widget.title,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Cairo-Regular',
-                fontSize: 20.sp,
+                fontSize: 34.sp,
                 fontWeight: FontWeight.bold,
-                height: 0.9),
+                height: 0.7.h),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -80,30 +70,31 @@ class _IntroState extends State<Intro> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Montserrat-Regular',
-                fontSize: 15.sp,
+                fontSize: 20.sp,
                 color: kPrimarycolor,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Row(
             children: [
               SizedBox(
-                width: 10.w,
+                width: 15.w,
               ),
               GestureDetector(
                 onTap: widget.ontap,
                 child: Container(
-                  width: 40.w,
-                  height: 40.h,
+                  width: 50.w,
+                  height: 50.h,
                   decoration: const BoxDecoration(
                     color: kPrimarycolor,
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Icon(
                       Icons.arrow_back,
+                      size: 20.sp,
                       color: kSecondarycolor,
                     ),
                   ),
@@ -112,8 +103,8 @@ class _IntroState extends State<Intro> {
             ],
           ),
           SizedBox(
-            height: 10.h,
-          )
+            height: 15.h,
+          ),
         ],
       ),
     );

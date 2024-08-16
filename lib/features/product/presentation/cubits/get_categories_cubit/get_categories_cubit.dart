@@ -6,11 +6,15 @@ part 'get_categories_state.dart';
 
 class GetCategoriesCubit extends Cubit<GetCategoriesState> {
   GetCategoriesCubit() : super(GetCategoriesInitial());
-  List categoryName = [];
-  getCategoriesName() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('Product_Categories').get();
+  List categoryProducts = [];
+  getcategoryproduct(final String collectionpath) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Product_Categories')
+        .doc(collectionpath)
+        .collection('products')
+        .get();
+    categoryProducts.addAll(querySnapshot.docs);
 
-    categoryName.addAll(querySnapshot.docs);
+    emit(GetCategoriesLoaded(categoryProducts));
   }
 }

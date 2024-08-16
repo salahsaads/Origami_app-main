@@ -43,7 +43,7 @@ class OnBoardingView extends StatelessWidget {
           ],
         ),
         Container(
-          alignment: const Alignment(0, 0.70),
+          alignment: const Alignment(0, 0.65),
           child: SmoothPageIndicator(
               controller: _controller,
               count: 2,
