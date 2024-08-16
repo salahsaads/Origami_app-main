@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               btnOkOnPress: () {},
             ).show();
           } else if (state is AuthLoading) {
-            isloading = true;
+            isloading = state.isLoading;
           }
         },
         child: Scaffold(

@@ -26,7 +26,7 @@ class _RegisterFormState extends State<RegisterForm> {
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController pass = TextEditingController();
-  TextEditingController location_on = TextEditingController();
+  TextEditingController locationOn = TextEditingController();
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   bool isloading = false;
@@ -85,7 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
               label: 'العنوان',
               hint: 'ادخل عنوانك',
               icon: Icons.location_on,
-              controller: location_on,
+              controller: locationOn,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height / 30,
@@ -97,7 +97,7 @@ class _RegisterFormState extends State<RegisterForm> {
                     name: name.text.trim(),
                     phone: phone.text.trim(),
                     pass: pass.text.trim(),
-                    location: location_on.text.trim(),
+                    location: locationOn.text.trim(),
                     context: context,
                   );
                 }

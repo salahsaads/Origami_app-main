@@ -31,7 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
     required BuildContext context,
   }) async {
     try {
-      emit(AuthLoading());
+      emit(AuthLoading(true));
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('users')
           .where('phoneNumber', isEqualTo: phone.text.trim())
@@ -53,14 +53,17 @@ class AuthCubit extends Cubit<AuthState> {
               ),
               (route) => false);
         } else {
+          emit(AuthLoading(false));
           emit(AuthError("خطأ بالباسورد",
               "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
         }
       } else {
+        emit(AuthLoading(false));
         emit(AuthError("المستخدم غير موجود",
             "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
       }
     } catch (e) {
+      emit(AuthLoading(false));
       emit(AuthError("خطأ غير متوقع", e.toString()));
     }
   }

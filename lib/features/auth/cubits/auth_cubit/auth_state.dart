@@ -5,7 +5,11 @@ abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
 
-class AuthLoading extends AuthState {}
+class AuthLoading extends AuthState {
+  bool isLoading;
+
+  AuthLoading(this.isLoading);
+}
 
 class AuthSuccess extends AuthState {}
 
