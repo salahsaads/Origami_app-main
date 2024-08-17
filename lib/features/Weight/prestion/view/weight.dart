@@ -37,7 +37,11 @@ class Weight extends StatelessWidget {
 
           return Scaffold(
             bottomNavigationBar: Padding(
-              padding: EdgeInsets.only(left: 8, right: 8, bottom: 50.h),
+              padding: EdgeInsets.only(
+                left: 8,
+                right: 8,
+                bottom: MediaQuery.of(context).size.height * 0.115,
+              ),
               child: GestureDetector(
                 onTap: () {
                   WoltModalSheet.show<void>(
@@ -74,7 +78,7 @@ class Weight extends StatelessWidget {
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             decoration: BoxDecoration(
-                                                color: Colors.amber,
+                                                color: kPrimarycolor,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                           ),
@@ -104,7 +108,7 @@ class Weight extends StatelessWidget {
                                             child: FaIcon(
                                                 FontAwesomeIcons.whatsapp),
                                             decoration: BoxDecoration(
-                                                color: Colors.amber,
+                                                color: kPrimarycolor,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                           ),
@@ -120,7 +124,7 @@ class Weight extends StatelessWidget {
                                             height: 45,
                                             child: Icon(Icons.facebook),
                                             decoration: BoxDecoration(
-                                                color: Colors.amber,
+                                                color: kPrimarycolor,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                           ),
@@ -137,7 +141,7 @@ class Weight extends StatelessWidget {
                                               height: 45,
                                               child: Icon(Icons.phone),
                                               decoration: BoxDecoration(
-                                                  color: Colors.amber,
+                                                  color: kPrimarycolor,
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           10)),

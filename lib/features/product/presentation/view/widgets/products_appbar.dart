@@ -84,8 +84,9 @@ class _ProductAppBarState extends State<ProductAppBar> {
                     ? Row(
                         children: [
                           Text(
-                            " ${profileModel!.name}",
+                            " ${profileModel!.name} ",
                             style: TextStyle(
+                                color: Colors.white,
                                 fontSize: 15.sp,
                                 fontFamily: kFontfamily,
                                 fontWeight: FontWeight.bold),
@@ -93,18 +94,23 @@ class _ProductAppBarState extends State<ProductAppBar> {
                           Text(
                             '  مرحبا',
                             style: TextStyle(
-                                fontSize: 15.sp, fontFamily: kFontfamily),
+                                color: Colors.white,
+                                fontSize: 15.sp,
+                                fontFamily: kFontfamily),
                           )
                         ],
                       )
-                    : Container(),
+                    : Container(
+                        width: 0,
+                        height: 0,
+                      ),
                 SizedBox(
                   width: 20.w,
                 )
               ],
             ),
             SizedBox(
-              height: 20.h,
+              height: 10.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +120,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
                     points: 0,
                     querySnapshot2: querySnapshot2),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -122,7 +128,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
                   },
                   child: Container(
                     width: MediaQuery.sizeOf(context).width - 90.w,
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    //   padding: EdgeInsets.symmetric(horizontal: 5.w),
                     height: 40.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -136,9 +142,12 @@ class _ProductAppBarState extends State<ProductAppBar> {
                           style: TextStyle(
                               fontSize: 15.sp, fontFamily: kFontfamily),
                         ),
+                        SizedBox(
+                          width: 5.w,
+                        ),
                         Icon(
                           Icons.search,
-                          size: 30.sp,
+                          size: 25.sp,
                         ),
                       ],
                     ),

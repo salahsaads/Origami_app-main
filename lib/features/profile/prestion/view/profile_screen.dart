@@ -22,8 +22,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? userphone;
   getdata() async {
     userphone = await pref.getString('phoneNumber');
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%');
-    print("userphone $userphone");
+   
+    
 
     profileModel = await FirbaseGet.getData(userphone!);
     setState(() {});

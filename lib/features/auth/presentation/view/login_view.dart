@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
             AwesomeDialog(
@@ -47,112 +47,117 @@ class _LoginScreenState extends State<LoginScreen> {
             isloading = state.isLoading;
           }
         },
-        child: Scaffold(
-          body: LoadingManger(
-            isloading: isloading,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const CustomIntoAppbar(
-                    text: "مرحبا بك",
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 20,
-                  ),
-                  Image.asset(
-                    'assets/images/logo.png',
-                    width: MediaQuery.of(context).size.width / 3,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 40,
-                  ),
-                  Form(
-                      key: formstate,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            CustomTextField(
-                              label: 'رقم الهاتف',
-                              hint: 'ادخل رقم هاتفك',
-                              icon: Icons.phone,
-                              controller: _phoneNumberController,
-                              obscure: false,
-                              keyboardType: TextInputType.number,
-                              maxLength: 11,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 50,
-                            ),
-                            CustomTextField(
-                              obscure: true,
-                              label: 'الباسورد',
-                              hint: 'ادخل كلمه المرور',
-                              icon: Icons.lock,
-                              controller: _passwordController,
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height / 35,
-                            ),
-                            CustomButton(
-                              ontap: () async {
-                                if (formstate.currentState!.validate()) {
-                                  BlocProvider.of<AuthCubit>(context).login(
-                                      phone: _phoneNumberController,
-                                      pass: _passwordController,
-                                      context: context);
-                                  // isloading = true;
-
-                                  // login(
-                                  //   phone: _phoneNumberController,
-                                  //   pass: _passwordController,
-                                  //   context: context,
-                                  // );
-
-                                  // setState(() {
-
-                                  // });
-                                }
-                              },
-                              text: 'تسجيل الدخول ',
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+        builder: (context, state) => Scaffold(
+              body: LoadingManger(
+                isloading: isloading,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const CustomIntoAppbar(
+                        text: "مرحبا بك",
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 20,
+                      ),
+                      Image.asset(
+                        'assets/images/logo.png',
+                        width: MediaQuery.of(context).size.width / 3,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 40,
+                      ),
+                      Form(
+                          key: formstate,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
                               children: [
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const RegisterScreen(),
-                                          ));
-                                    },
-                                    child: const Text(
-                                      "إنشاء حساب جديد",
-                                      style: TextStyle(
-                                          color: kPrimarycolor,
-                                          fontWeight: FontWeight.bold,
-                                          decoration: TextDecoration.underline),
-                                    )),
-                                const Text(
-                                  "! ليس لديك حساب ",
-                                  style: TextStyle(
-                                    fontFamily: 'NotoKufiArabic',
-                                  ),
+                                CustomTextField(
+                                  label: 'رقم الهاتف',
+                                  hint: 'ادخل رقم هاتفك',
+                                  icon: Icons.phone,
+                                  controller: _phoneNumberController,
+                                  obscure: false,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 11,
                                 ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 50,
+                                ),
+                                CustomTextField(
+                                  obscure: true,
+                                  label: 'الباسورد',
+                                  hint: 'ادخل كلمه المرور',
+                                  icon: Icons.lock,
+                                  controller: _passwordController,
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 35,
+                                ),
+                                CustomButton(
+                                  ontap: () async {
+                                    if (formstate.currentState!.validate()) {
+                                      BlocProvider.of<AuthCubit>(context).login(
+                                          phone: _phoneNumberController,
+                                          pass: _passwordController,
+                                          context: context);
+                                      // isloading = true;
+
+                                      // login(
+                                      //   phone: _phoneNumberController,
+                                      //   pass: _passwordController,
+                                      //   context: context,
+                                      // );
+
+                                      // setState(() {
+
+                                      // });
+                                    }
+                                  },
+                                  text: state is AuthLoading
+                                      ? 'جاري تسجيل الدخول...'
+                                      : 'تسجيل الدخول ',
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const RegisterScreen(),
+                                              ));
+                                        },
+                                        child: const Text(
+                                          "إنشاء حساب جديد",
+                                          style: TextStyle(
+                                              color: kPrimarycolor,
+                                              fontWeight: FontWeight.bold,
+                                              decoration:
+                                                  TextDecoration.underline),
+                                        )),
+                                    const Text(
+                                      "! ليس لديك حساب ",
+                                      style: TextStyle(
+                                        fontFamily: 'NotoKufiArabic',
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        ),
-                      )),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height / 35,
+                            ),
+                          )),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 35,
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ));
+            ));
   }
 }

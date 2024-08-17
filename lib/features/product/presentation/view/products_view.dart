@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/product/presentation/cubits/get_categories_cubit/get_categories_cubit.dart';
-import 'package:shimmer/shimmer.dart';
-
 import '../cubits/getuserpoints/getuserpoints_cubit.dart';
 import 'widgets/Shimmwr_Loading.dart';
 import 'widgets/category_products.dart';
@@ -113,7 +111,7 @@ class _ProductsState extends State<Products> {
                             ],
                           ),
                           SizedBox(
-                            height: 15.h,
+                            height: 10.h,
                           ),
                           BlocProvider(
                             create: (context) => GetCategoriesCubit()

@@ -76,6 +76,7 @@ class AuthCubit extends Cubit<AuthState> {
     required BuildContext context,
   }) async {
     // Regex pattern for a strong password
+    emit(AuthLoading(true));
     final strongPasswordPattern = RegExp(
         r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
 

@@ -73,7 +73,7 @@ class CustomTextField extends StatelessWidget {
                             borderSide: BorderSide.none)),
                   )
                 : TextFormField(
-                    obscureText: cu.t,
+                    obscureText: !cu.t,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'ادخل البيانات بشكل صحيح';
@@ -89,14 +89,17 @@ class CustomTextField extends StatelessWidget {
                         fillColor: Colors.grey[300],
                         contentPadding: const EdgeInsets.all(13.0),
                         hintText: hint,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            cu.changeIcon();
-                          },
-                          child: Icon(
-                            cu.t ? Icons.lock : Icons.lock_open,
-                            color: Colors.grey,
-                          ),
+                        prefixIcon: GestureDetector(
+                            onTap: () {
+                              cu.changeIcon();
+                            },
+                            child: cu.t
+                                ? Icon(Icons.visibility, color: Colors.grey)
+                                : Icon(Icons.visibility_off,
+                                    color: Colors.grey)),
+                        suffixIcon: Icon(
+                          Icons.lock,
+                          color: Colors.grey,
                         ),
                         hintTextDirection: TextDirection.rtl,
                         focusedBorder: const OutlineInputBorder(

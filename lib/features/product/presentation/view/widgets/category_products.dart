@@ -31,9 +31,9 @@ class _CategoryProductsState extends State<CategoryProducts> {
             return GridView.builder(
               //reverse: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 5,
-                crossAxisCount: 1,
-              ),
+                  mainAxisSpacing: 5,
+                  crossAxisCount: 1,
+               ),
               itemCount: categoryProducts.length,
               scrollDirection: widget.dir,
               itemBuilder: (context, index) => GestureDetector(

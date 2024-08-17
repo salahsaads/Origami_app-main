@@ -29,13 +29,13 @@ class ShimmerLoading extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    width: 300.w,
+                    width: MediaQuery.sizeOf(context).width * (3 / 4) - 42,
                     height: 200.h, // Responsive height
                     color: Colors.grey[300],
                   ),
                   SizedBox(width: 20.w), // Responsive width
                   Container(
-                    width: 300.w,
+                    width: MediaQuery.sizeOf(context).width * (1 / 4),
                     height: 200.h,
                     color: Colors.grey[300],
                   ),
@@ -57,13 +57,13 @@ class ShimmerLoading extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    width: 300.w,
-                    height: 200.h,
+                    width: MediaQuery.sizeOf(context).width * (3 / 4) - 42,
+                    height: 200.h, // Responsive height
                     color: Colors.grey[300],
                   ),
-                  SizedBox(width: 20.w),
+                  SizedBox(width: 20.w), // Responsive width
                   Container(
-                    width: 300.w,
+                    width: MediaQuery.sizeOf(context).width * (1 / 4),
                     height: 200.h,
                     color: Colors.grey[300],
                   ),
