@@ -8,11 +8,11 @@ import 'package:origami/features/Car/presntion/view/Car_screen.dart';
 import 'package:origami/features/product/presentation/view/widgets/shopping_cart.dart';
 import 'package:origami/features/product/presentation/view/widgets/user_points.dart';
 import 'package:origami/features/productsSearch/presentation/views/product_search_view.dart';
+import 'package:origami/features/profile/prestion/view_model/profile_model.dart';
 import 'package:origami/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../profile/data/network.dart';
-import '../../../../profile/prestion/view_model/profile_model.dart';
 
 class ProductAppBar extends StatefulWidget {
   ProductAppBar({super.key, required this.point});
@@ -84,9 +84,8 @@ class _ProductAppBarState extends State<ProductAppBar> {
                     ? Row(
                         children: [
                           Text(
-                            " ${profileModel!.name} ",
+                            " ${profileModel!.name}",
                             style: TextStyle(
-                                color: Colors.white,
                                 fontSize: 15.sp,
                                 fontFamily: kFontfamily,
                                 fontWeight: FontWeight.bold),
@@ -94,23 +93,18 @@ class _ProductAppBarState extends State<ProductAppBar> {
                           Text(
                             '  مرحبا',
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15.sp,
-                                fontFamily: kFontfamily),
+                                fontSize: 15.sp, fontFamily: kFontfamily),
                           )
                         ],
                       )
-                    : Container(
-                        width: 0,
-                        height: 0,
-                      ),
+                    : Container(),
                 SizedBox(
                   width: 20.w,
                 )
               ],
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +122,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
                   },
                   child: Container(
                     width: MediaQuery.sizeOf(context).width - 90.w,
-                    //   padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    padding: EdgeInsets.symmetric(horizontal: 5.w),
                     height: 40.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.r),
@@ -142,12 +136,9 @@ class _ProductAppBarState extends State<ProductAppBar> {
                           style: TextStyle(
                               fontSize: 15.sp, fontFamily: kFontfamily),
                         ),
-                        SizedBox(
-                          width: 5.w,
-                        ),
                         Icon(
                           Icons.search,
-                          size: 25.sp,
+                          size: 30.sp,
                         ),
                       ],
                     ),

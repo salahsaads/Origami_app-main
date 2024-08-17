@@ -40,9 +40,9 @@ class AuthCubit extends Cubit<AuthState> {
       if (querySnapshot.docs.isNotEmpty) {
         DocumentSnapshot userSnapshot = querySnapshot.docs.first;
         String storedPassword = userSnapshot['password'];
-
-        if (encryptData.decryptPassword(storedPassword).toString() ==
-            pass.text.trim()) {
+        print('888888888888888888888888888888888888888888888888888888');
+        print(encryptData.decryptPassword(storedPassword).toString());
+        if (encryptData.decryptPassword(storedPassword) == pass.text.trim()) {
           await setLoginStatus(true);
           await pref.setString('phoneNumber', phone.text.trim());
           emit(AuthSuccess());
