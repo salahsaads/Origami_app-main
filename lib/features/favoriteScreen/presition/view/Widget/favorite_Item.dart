@@ -57,7 +57,7 @@ class _FavoriteItemState extends State<FavoriteItem> {
                           name: widget.name,
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       ),

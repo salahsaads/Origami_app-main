@@ -86,7 +86,7 @@ class _CardModel2State extends State<CardModel2> {
                                       size: 28,
                                       color: fev! ? Colors.red : null,
                                     )
-                              : Icon(
+                              : const Icon(
                                   Icons.favorite_border,
                                   size: 28,
                                 ))
@@ -147,7 +147,7 @@ class _CardModel2State extends State<CardModel2> {
                         borderRadius: BorderRadius.circular(10.r),
                         color: kSecondarycolor),
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -158,10 +158,10 @@ class _CardModel2State extends State<CardModel2> {
                                     {'${widget.productname}': Cubit.x});
                                 DataGloble.PointAll += widget.productpoints;
                               },
-                              child: Icon(Icons.add)),
+                              child: const Icon(Icons.add)),
                           Text(
                             '${Cubit.x}',
-                            style: TextStyle(color: Colors.grey),
+                            style: const TextStyle(color: Colors.grey),
                           ),
                           GestureDetector(
                               onTap: () {
@@ -176,7 +176,7 @@ class _CardModel2State extends State<CardModel2> {
                                 DataGloble.PointAll -= widget.productpoints;
                                 print(DataGloble.PointAll);
                               },
-                              child: Icon(Icons.remove))
+                              child: const Icon(Icons.remove))
                         ],
                       ),
                     ),
@@ -198,6 +198,12 @@ class _CardModel2State extends State<CardModel2> {
                             .where('user_number', isEqualTo: number)
                             .where('productname', isEqualTo: widget.productname)
                             .get();
+                        if (DataGloble.PointAll != 0) {
+                          DataGloble.PointAll -=
+                              DataGloble.Prodect[widget.productname]! *
+                                  widget.productpoints;
+                          DataGloble.Prodect.remove(widget.productname);
+                        }
 
                         for (QueryDocumentSnapshot doc in querySnapshot.docs) {
                           await doc.reference.delete();

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/Theme/constant.dart';
 
-import '../../cubits/getuserpoints/getuserpoints_cubit.dart';
 
 class UserPoints extends StatelessWidget {
   UserPoints({super.key, required this.point});
@@ -11,7 +9,7 @@ class UserPoints extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5.w),
+      padding: EdgeInsets.symmetric(horizontal: 11.w),
       height: 40.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
@@ -28,7 +26,7 @@ class UserPoints extends StatelessWidget {
               fontFamily: kFontfamily,
             ),
           ),
-          SizedBox(
+         const SizedBox(
             width: 5,
           ),
           Image.asset(

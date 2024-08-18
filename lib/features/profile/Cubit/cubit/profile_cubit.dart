@@ -7,12 +7,12 @@ part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
-  ProfileModel? profileModel1;
-  getdata(String number) async {
+  ProfileModel? profileModel;
+  getdata() async {
     emit(ProfileLoading());
     try {
-      ProfileModel profileModel = await FirbaseGet.getData(number);
-      profileModel1 = profileModel;
+       profileModel = await FirbaseGet.getData();
+    ;
       emit(ProfileLoaded());
     } catch (e) {
       emit(ProfileError());

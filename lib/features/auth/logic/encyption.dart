@@ -17,10 +17,15 @@ class Encryption {
 //     final decrypted = encrypter.decrypt64(encryptedPassword, iv: iv);
 //     return decrypted;
 //   }
-  final key = Key.fromUtf8('my32lengthsupersecretnooneknows1');
-  final iv = IV.fromLength(16);
+  late final Key key;
+  late final IV iv;
+  late final Encrypter encrypter;
 
-  final encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: 'PKCS7'));
+  Encryption() {
+    key = Key.fromUtf8('my32lengthsupersecretnooneknows1');
+    iv = IV.fromLength(16);
+    encrypter = Encrypter(AES(key, mode: AESMode.cbc, padding: 'PKCS7'));
+  }
 
   String encrypt(String text) {
     final encrypted = encrypter.encrypt(text, iv: iv);

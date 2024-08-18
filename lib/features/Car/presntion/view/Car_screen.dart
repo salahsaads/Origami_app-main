@@ -52,7 +52,11 @@ class _Car_screenState extends State<Car_screen> {
     super.initState();
     _getTotalProductPoints();
     DataGloble.PointAll = 0;
-    DataGloble.Prodect.clear();
+    if (DataGloble.Prodect.isNotEmpty) {
+      {
+        DataGloble.Prodect.clear();
+      }
+    }
   }
 
   Future<void> _getTotalProductPoints() async {
@@ -107,7 +111,7 @@ class _Car_screenState extends State<Car_screen> {
                   alignment: Alignment.center,
                   width: 140.w,
                   height: 40.h,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: kPrimarycolor,
                       borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(10),
@@ -115,7 +119,7 @@ class _Car_screenState extends State<Car_screen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      FaIcon(
+                      const FaIcon(
                         FontAwesomeIcons.whatsapp,
                         color: Colors.white,
                       ),
@@ -161,10 +165,10 @@ class _Car_screenState extends State<Car_screen> {
                   decoration: BoxDecoration(
                       border: Border.all(color: kPrimarycolor),
                       color: kSecondarycolor,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(10),
                           topRight: Radius.circular(10))),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -188,7 +192,7 @@ class _Car_screenState extends State<Car_screen> {
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.only(left: 8, right: 8, top: 16),
+          padding: const EdgeInsets.only(left: 8, right: 8, top: 16),
           child: SizedBox(
               height: MediaQuery.sizeOf(context).height - 200,
               child: StreamBuilder(

@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:origami/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'getuserpoints_state.dart';
 

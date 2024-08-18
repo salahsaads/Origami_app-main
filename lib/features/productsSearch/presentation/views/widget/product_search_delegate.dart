@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/features/productsSearch/cubits/productsearch/productsearch_cubit.dart';
-import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../../../../product/presentation/models/card_model.dart';
 
@@ -71,30 +71,56 @@ class ProductSearchDelegate extends SearchDelegate {
                   children: entry.value.map((product) {
                     return GestureDetector(
                       onTap: () {
-                        WoltModalSheet.show<void>(
-                          // pageIndexNotifier: pageIndexNotifier,
+                        showMaterialModalBottomSheet(
                           context: context,
-                          pageListBuilder: (modalSheetContext) {
-                            return [
-                              WoltModalSheetPage(
-                                backgroundColor: Colors.white,
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      CardModel(
-                                        details: product['details'],
-                                        addornot: true,
-                                        image: product['image'],
-                                        productname: product['name'],
-                                        productpoints: product['point'],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ];
-                          },
+                          builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.5,
+                            child: CardModel(
+                              details: product['details'],
+                              addornot: true,
+                              image: product['image'],
+                              productname: product['name'],
+                              productpoints: product['point'],
+                            ),
+                          ),
                         );
+
+                        // print(
+                        //     '${product['name']}======================================================================');
+                        // showMaterialModalBottomSheet(
+                        //   context: context,
+                        //   builder: (context) => Container(
+                        //     constraints: BoxConstraints(
+                        //       maxHeight: MediaQuery.of(context).size.height *
+                        //           0.5, // Example constraint
+                        //     ),
+                        //     child: Expanded(
+                        //       child: Column(
+                        //         children: [
+                        //           CardModel(
+                        //             details: product['details'],
+                        //             addornot: true,
+                        //             image: product['image'],
+                        //             productname: product['name'],
+                        //             productpoints: product['point'],
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // );
+                        // // WoltModalSheet.show<void>(
+                        // //   // pageIndexNotifier: pageIndexNotifier,
+                        // //   context: context,
+                        // //   pageListBuilder: (modalSheetContext) {
+                        // //     return [
+                        // //       WoltModalSheetPage(
+                        // //         backgroundColor: Colors.white,
+                        // //         child:
+                        // //       ),
+                        // //     ];
+                        // //   },
+                        // // );
                       },
                       child: Container(
                         decoration: BoxDecoration(color: kSecondarycolor),

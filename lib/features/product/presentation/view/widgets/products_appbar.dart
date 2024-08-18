@@ -41,9 +41,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
   ProfileModel? profileModel;
 
   getdata() async {
-    userphone = await pref.getString('phoneNumber');
-
-    profileModel = await FirbaseGet.getData(userphone!);
+    profileModel = await FirbaseGet.getData();
     setState(() {});
   }
 
@@ -79,32 +77,39 @@ class _ProductAppBarState extends State<ProductAppBar> {
                 UserPoints(
                   point: widget.point,
                 ),
-                Spacer(),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Spacer(),
                 profileModel != null
-                    ? Row(
-                        children: [
-                          Text(
-                            " ${profileModel!.name}",
-                            style: TextStyle(
-                                fontSize: 15.sp,
-                                fontFamily: kFontfamily,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            '  مرحبا',
-                            style: TextStyle(
-                                fontSize: 15.sp, fontFamily: kFontfamily),
-                          )
-                        ],
+                    ? Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: kSecondarycolor),
+                        child: Row(
+                          children: [
+                            Text(
+                              " ${profileModel!.name}",
+                              style: TextStyle(
+                                  fontSize: 15.sp,
+                                  fontFamily: kFontfamily,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '  مرحبا',
+                              style: TextStyle(
+                                  fontSize: 15.sp, fontFamily: kFontfamily),
+                            )
+                          ],
+                        ),
                       )
                     : Container(),
-                SizedBox(
-                  width: 20.w,
-                )
               ],
             ),
             SizedBox(
-              height: 20.h,
+              height: 10.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

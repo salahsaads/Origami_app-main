@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:origami/features/product/presentation/cubits/get_categories_cubit/get_categories_cubit.dart';
 
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
@@ -30,38 +31,26 @@ class _CategoryProductsState extends State<CategoryProducts> {
             List<dynamic> categoryProducts = state.categoryProducts;
             return GridView.builder(
               //reverse: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 5,
-                  crossAxisCount: 1,
-               ),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 5,
+                crossAxisCount: 1,
+              ),
               itemCount: categoryProducts.length,
               scrollDirection: widget.dir,
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  WoltModalSheet.show<void>(
-                    // pageIndexNotifier: pageIndexNotifier,
+                  showMaterialModalBottomSheet(
                     context: context,
-                    pageListBuilder: (modalSheetContext) {
-                      return [
-                        WoltModalSheetPage(
-                          backgroundColor: Colors.white,
-                          child: Container(
-                            child: Column(
-                              children: [
-                                CardModel(
-                                  details: categoryProducts[index]['details'],
-                                  addornot: true,
-                                  image: categoryProducts[index]['image'],
-                                  productname: categoryProducts[index]['name'],
-                                  productpoints: categoryProducts[index]
-                                      ['point'],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ];
-                    },
+                    builder: (context) => Container(
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      child: CardModel(
+                        details: categoryProducts[index]['details'],
+                        addornot: true,
+                        image: categoryProducts[index]['image'],
+                        productname: categoryProducts[index]['name'],
+                        productpoints: categoryProducts[index]['point'],
+                      ),
+                    ),
                   );
                 },
                 child: CardModel(
@@ -74,7 +63,7 @@ class _CategoryProductsState extends State<CategoryProducts> {
               ),
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),

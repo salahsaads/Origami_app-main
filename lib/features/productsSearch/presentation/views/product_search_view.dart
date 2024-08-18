@@ -10,7 +10,7 @@ class ProductsSearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ProductsearchCubit(),
+      create: (_) =>  ProductsearchCubit(),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: kSecondarycolor,

@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       // });
                                     }
                                   },
-                                  text: state is AuthLoading
+                                  text: isloading
                                       ? 'جاري تسجيل الدخول...'
                                       : 'تسجيل الدخول ',
                                 ),

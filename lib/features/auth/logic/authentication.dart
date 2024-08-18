@@ -32,8 +32,7 @@ Future<void> login({
     DocumentSnapshot userSnapshot = querySnapshot.docs.first;
     String storedPassword = userSnapshot['password'];
 
-    if (encryptData.decryptPassword(storedPassword).toString() ==
-        pass.text.trim()) {
+    if (encryptData.decrypt(storedPassword).toString() == pass.text.trim()) {
       // Password is correct, set login status to true and navigate to home screen
       await setLoginStatus(true);
       print("Login successful!");
@@ -85,7 +84,7 @@ register(
   await users.doc(phone.text.trim()).set({
     'name': name.text.trim(),
     'phoneNumber': phone.text.trim(),
-    'password': encryptData.encryptPassword(pass.text.trim()),
+    'password': encryptData.encrypt(pass.text.trim()),
     'points': 0,
     'location': locationn.text.trim()
   });

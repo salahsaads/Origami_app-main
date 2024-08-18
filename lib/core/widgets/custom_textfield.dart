@@ -94,10 +94,10 @@ class CustomTextField extends StatelessWidget {
                               cu.changeIcon();
                             },
                             child: cu.t
-                                ? Icon(Icons.visibility, color: Colors.grey)
-                                : Icon(Icons.visibility_off,
+                                ? const Icon(Icons.visibility, color: Colors.grey)
+                                : const Icon(Icons.visibility_off,
                                     color: Colors.grey)),
-                        suffixIcon: Icon(
+                        suffixIcon: const Icon(
                           Icons.lock,
                           color: Colors.grey,
                         ),

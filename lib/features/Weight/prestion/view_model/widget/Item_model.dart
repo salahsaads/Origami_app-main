@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/DataGloble/DataGloble.dart';
 import 'package:origami/features/Weight/cubit/cubit/weight_cubit.dart';
-
 import '../../../../../core/Theme/constant.dart';
 
 class Item_model_Khorda extends StatefulWidget {
@@ -28,7 +27,9 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    DataGloble.KProdect.clear();
+    if (DataGloble.KProdect.length != 0) {
+      DataGloble.KProdect.clear();
+    }
   }
 
   @override

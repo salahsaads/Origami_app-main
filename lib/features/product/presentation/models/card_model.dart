@@ -53,7 +53,8 @@ class _CardModelState extends State<CardModel> {
             border: Border(
                 top: BorderSide(color: kPrimarycolor, width: 0.2.w),
                 right: BorderSide(color: kPrimarycolor, width: 0.2.w),
-                left: BorderSide(color: kPrimarycolor, width: 0.2.w)),
+                left: BorderSide(color: kPrimarycolor, width: 0.2.w),
+                bottom: BorderSide(color: kPrimarycolor, width: 0.2.w)),
             borderRadius: BorderRadius.circular(10.r)),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
@@ -63,7 +64,7 @@ class _CardModelState extends State<CardModel> {
               Stack(
                 children: [
                   Container(
-                    height: 50.h,
+                    height: 55.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         color: kSecondarycolor,
@@ -110,7 +111,7 @@ class _CardModelState extends State<CardModel> {
                                   size: 28,
                                   color: fev! ? Colors.red : null,
                                 )
-                          : Icon(
+                          : const Icon(
                               Icons.favorite_border,
                               size: 28,
                             ),
@@ -118,13 +119,14 @@ class _CardModelState extends State<CardModel> {
                   )
                 ],
               ),
-              SizedBox(
-                height: 4.5.h,
-              ),
+              // SizedBox(
+              //   height: 3.h,
+              // ),
+              const Spacer(),
               Text(
                 widget.productname,
                 style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 15.sp,
                     fontFamily: kFontfamily,
                     fontWeight: FontWeight.bold),
                 textDirection: TextDirection.rtl,
@@ -165,6 +167,8 @@ class _CardModelState extends State<CardModel> {
                       details: widget.details,
                     )
                   : Container(),
+
+              const Spacer(),
               ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(backgroundColor: kPrimarycolor),

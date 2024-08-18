@@ -40,9 +40,8 @@ class AuthCubit extends Cubit<AuthState> {
       if (querySnapshot.docs.isNotEmpty) {
         DocumentSnapshot userSnapshot = querySnapshot.docs.first;
         String storedPassword = userSnapshot['password'];
-        print('888888888888888888888888888888888888888888888888888888');
-        print(encryptData.decryptPassword(storedPassword).toString());
-        if (encryptData.decryptPassword(storedPassword) == pass.text.trim()) {
+
+        if (storedPassword == pass.text.trim()) {
           await setLoginStatus(true);
           await pref.setString('phoneNumber', phone.text.trim());
           emit(AuthSuccess());
@@ -53,19 +52,17 @@ class AuthCubit extends Cubit<AuthState> {
               ),
               (route) => false);
         } else {
-          emit(AuthLoading(false));
           emit(AuthError("خطأ بالباسورد",
               "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
         }
       } else {
-        emit(AuthLoading(false));
         emit(AuthError("المستخدم غير موجود",
             "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
       }
     } catch (e) {
-      emit(AuthLoading(false));
       emit(AuthError("خطأ غير متوقع", e.toString()));
     }
+    emit(AuthLoading(false));
   }
 
   Future<void> register({
@@ -88,15 +85,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
 
     try {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(phone.trim())
-          .set({
-        'name': name.trim(),
-        'phoneNumber': phone.trim(),
-        'password': encryptData.encryptPassword(pass.trim()),
+      await FirebaseFirestore.instance.collection('users').doc(phone).set({
+        'name': name,
+        'phoneNumber': phone,
+        'password': pass,
         'points': 0,
-        'location': location.trim(),
+        'location': location,
       });
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
