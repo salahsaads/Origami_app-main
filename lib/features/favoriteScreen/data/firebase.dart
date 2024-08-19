@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:origami/main.dart';
 
 class FirebaseGetFav {
-    Stream<List<Map<String, dynamic>>> getFavorites() {
-    CollectionReference favorite = FirebaseFirestore.instance.collection('favorite');
+  String? number = pref.getString('phoneNumber');
+  Stream<List<Map<String, dynamic>>> getFavorites() {
+    Query<Map<String, dynamic>> favorite = FirebaseFirestore.instance
+        .collection('favorite')
+        .where('number', isEqualTo: number);
     return favorite.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      return snapshot.docs.map((doc) => doc.data()).toList();
     });
   }
 }

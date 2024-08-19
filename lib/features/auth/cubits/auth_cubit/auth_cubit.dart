@@ -81,6 +81,8 @@ class AuthCubit extends Cubit<AuthState> {
     if (!strongPasswordPattern.hasMatch(pass.trim())) {
       emit(AuthError("كلمة المرور ضعيفة",
           "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، منها حرف كبير، حرف صغير، رقم ورمز خاص."));
+      emit(AuthLoading(false));
+
       return;
     }
 

@@ -36,26 +36,26 @@ dependencies:
   country_icons: ^3.0.0
   crypto: ^3.0.3
   cupertino_icons: ^1.0.2
+  device_preview: ^1.2.0
   encrypt: ^5.0.3
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   flag: ^7.0.0
   flutter:
     sdk: flutter
-  rive_common: ^0.4.10
   flutter_bloc: ^8.1.6
   flutter_screenutil: ^5.9.0
   font_awesome_flutter: ^10.7.0
+  modal_bottom_sheet: ^3.0.0
   modal_progress_hud_nsn: ^0.5.1
   page_transition: ^2.1.0
+  rive_common: ^0.4.10
   shared_preferences: ^2.0.8
+  shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0
   stylish_bottom_bar: ^1.0.2
   url_launcher: ^6.3.0
-  device_preview: ^1.2.0
-  shimmer: ^3.0.0
   wolt_modal_sheet: ^0.8.0
-  modal_bottom_sheet: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

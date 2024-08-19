@@ -52,7 +52,7 @@ class _ProductsState extends State<Products> {
                   builder: (context, state) {
                 int? points =
                     BlocProvider.of<GetuserpointsCubit>(context).points;
-                if (state == Success) {
+                if (state is Success) {
                   return Expanded(
                       flex: 4,
                       child: ProductAppBar(
@@ -71,16 +71,20 @@ class _ProductsState extends State<Products> {
                 ? Expanded(
                     flex: 11,
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                      ),
                       child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        padding: EdgeInsets.only(top: 15.h),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          mainAxisSpacing: 15.h,
+                          mainAxisSpacing: 20,
                           childAspectRatio: 1.6,
                         ),
                         itemCount: categoryName.length,
                         itemBuilder: (context, index) => Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          // crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -102,7 +106,9 @@ class _ProductsState extends State<Products> {
                                 //         fontFamily: kFontfamily,
                                 //       )),
                                 // ),
-
+                                SizedBox(
+                                  height: 10.h,
+                                ),
                                 Text(categoryName[index]['Categoryname'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -113,7 +119,7 @@ class _ProductsState extends State<Products> {
                               ],
                             ),
                             SizedBox(
-                              height: 10.h,
+                              height: 15.h,
                             ),
                             BlocProvider(
                               create: (context) => GetCategoriesCubit()

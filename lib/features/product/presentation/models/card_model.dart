@@ -15,12 +15,14 @@ class CardModel extends StatefulWidget {
       required this.productname,
       required this.productpoints,
       required this.addornot,
-      required this.details});
+      required this.details,
+      this.isBottomSheet = false});
   final String image;
   final String productname;
   final int productpoints;
   final bool addornot;
   final String details;
+  final bool? isBottomSheet;
 
   @override
   State<CardModel> createState() => _CardModelState();
@@ -64,7 +66,7 @@ class _CardModelState extends State<CardModel> {
               Stack(
                 children: [
                   Container(
-                    height: 55.h,
+                    height: widget.isBottomSheet == true ? 55.h : 150.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         color: kSecondarycolor,
