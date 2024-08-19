@@ -116,7 +116,7 @@ class _ProductAppBarState extends State<ProductAppBar> {
               children: [
                 ShoppingCart(
                     userphone: userphone,
-                    points: 0,
+                    points: widget.point!,
                     querySnapshot2: querySnapshot2),
                 GestureDetector(
                   onTap: () {

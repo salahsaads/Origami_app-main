@@ -74,7 +74,7 @@ class ProductSearchDelegate extends SearchDelegate {
                         showMaterialModalBottomSheet(
                           context: context,
                           builder: (context) => Container(
-                            height: MediaQuery.of(context).size.height * 0.5,
+                            height: MediaQuery.of(context).size.height * 0.7,
                             child: CardModel(
                               details: product['details'],
                               addornot: true,

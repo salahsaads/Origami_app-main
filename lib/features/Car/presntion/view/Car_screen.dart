@@ -92,6 +92,18 @@ class _Car_screenState extends State<Car_screen> {
                   if (widget.allpoint >= DataGloble.PointAll &&
                       DataGloble.PointAll > 0) {
                     openWhatsApp(whatsapp);
+                  } else if (DataGloble.PointAll == 0) {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      headerAnimationLoop: true,
+                      animType: AnimType.bottomSlide,
+                      title: 'لا يوجد منتجات',
+                      titleTextStyle: TextStyle(
+                          fontSize: 24.sp,
+                          fontFamily: kFontfamily,
+                          color: Colors.black),
+                    ).show();
                   } else {
                     AwesomeDialog(
                       context: context,
@@ -143,6 +155,18 @@ class _Car_screenState extends State<Car_screen> {
                   if (widget.allpoint >= DataGloble.PointAll &&
                       DataGloble.PointAll > 0) {
                     launchUrlString(call);
+                  } else if (DataGloble.PointAll == 0) {
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.warning,
+                      headerAnimationLoop: true,
+                      animType: AnimType.bottomSlide,
+                      title: 'لا يوجد منتجات',
+                      titleTextStyle: TextStyle(
+                          fontSize: 24.sp,
+                          fontFamily: kFontfamily,
+                          color: Colors.black),
+                    ).show();
                   } else {
                     AwesomeDialog(
                       context: context,

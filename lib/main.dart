@@ -31,12 +31,12 @@ void main() async {
   );
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
-    // runApp(DevicePreview(
-    //   enabled: true,
-    //   builder: (context) => const Origami(),
-    // ));
+    runApp(DevicePreview(
+      enabled: true,
+      builder: (context) => const Origami(),
+    ));
 
-    runApp(const Origami());
+    // runApp(const Origami());
   });
 }
 

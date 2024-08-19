@@ -66,7 +66,7 @@ class _CardModelState extends State<CardModel> {
               Stack(
                 children: [
                   Container(
-                    height: widget.isBottomSheet == true ? 55.h : 150.h,
+                    height: widget.isBottomSheet == true ? 47.h : 150.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.r),
                         color: kSecondarycolor,
@@ -213,7 +213,7 @@ class _CardModelState extends State<CardModel> {
                       Icon(
                         Icons.shopping_cart,
                         color: Colors.white,
-                        size: 24.sp,
+                        size: 20.sp,
                       )
                     ],
                   ))

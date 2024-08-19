@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:origami/features/product/presentation/cubits/get_categories_cubit/get_categories_cubit.dart';
 import 'package:origami/features/product/presentation/view/widgets/bottom_model_sheet.dart';
@@ -40,8 +41,16 @@ class _CategoryProductsState extends State<CategoryProducts> {
                 onTap: () {
                   showMaterialModalBottomSheet(
                     context: context,
-                    categoryProducts: categoryProducts,
-                    index: index,
+                    builder: (context) => Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      child: CardModel(
+                        details: categoryProducts[index]['details'],
+                        addornot: true,
+                        image: categoryProducts[index]['image'],
+                        productname: categoryProducts[index]['name'],
+                        productpoints: categoryProducts[index]['point'],
+                      ),
+                    ),
                   );
                 },
                 child: CardModel(

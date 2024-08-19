@@ -127,14 +127,6 @@ class _CardModel2State extends State<CardModel2> {
                             fontWeight: FontWeight.bold,
                             color: kPrimarycolor),
                       ),
-                      Text(
-                        "1 كيلو : ",
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            fontFamily: kFontfamily,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold),
-                      ),
                     ],
                   ),
                   SizedBox(
@@ -154,8 +146,11 @@ class _CardModel2State extends State<CardModel2> {
                           GestureDetector(
                               onTap: () {
                                 Cubit.add();
-                                DataGloble.Prodect.addAll(
-                                    {'${widget.productname}': Cubit.x});
+                                final modifiableMap =
+                                    Map<String, int>.from(DataGloble.Prodect);
+                                modifiableMap
+                                    .addAll({'${widget.productname}': Cubit.x});
+                                DataGloble.Prodect = modifiableMap;
                                 DataGloble.PointAll += widget.productpoints;
                               },
                               child: const Icon(Icons.add)),
