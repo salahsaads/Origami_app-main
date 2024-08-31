@@ -124,11 +124,15 @@ class _CardModelState extends State<CardModel> {
               // SizedBox(
               //   height: 3.h,
               // ),
-              const Spacer(),
+              widget.isBottomSheet == false
+                  ? SizedBox(
+                      height: 10.h,
+                    )
+                  : const Spacer(),
               Text(
                 widget.productname,
                 style: TextStyle(
-                    fontSize: 15.sp,
+                    fontSize: 20.sp,
                     fontFamily: kFontfamily,
                     fontWeight: FontWeight.bold),
                 textDirection: TextDirection.rtl,
@@ -234,16 +238,21 @@ class CustomScreenDetails extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 20.h,
+          height: 10.h,
         ),
-        Text(
+        SizedBox(
+          child: Text(
+            details,
+            maxLines: 7,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: kFontfamily,
-                fontSize: 10.sp,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
-                color: kPrimarycolor),
-            details),
+                color: kPrimarycolor,
+                overflow: TextOverflow.ellipsis),
+          ),
+        ),
         SizedBox(
           height: 20.h,
         ),

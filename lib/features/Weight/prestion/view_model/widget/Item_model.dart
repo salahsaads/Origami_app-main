@@ -101,7 +101,7 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "كيلوا",
+                  "كيلو",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                       fontFamily: kFontfamily,
@@ -113,7 +113,7 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                   width: 5.w,
                 ),
                 Text(
-                  "${qu}",
+                  "$qu",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                       fontFamily: kFontfamily,
@@ -147,7 +147,7 @@ class _Item_model_KhordaState extends State<Item_model_Khorda> {
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  " النقط الكلي ",
+                  "النقاط الكليه",
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                       fontFamily: kFontfamily,

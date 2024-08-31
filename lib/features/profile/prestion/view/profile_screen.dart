@@ -42,6 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //Image User or Icone app
                       SizedBox(
@@ -57,6 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // ),
                       state is ProfileLoaded
                           ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Item_Profile(
                                   Title: '${Cubit.profileModel!.name}',
@@ -83,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   children: [
                                     Image.asset(
                                       'assets/images/coin.png',
-                                      width: 40.w,
+                                      width: 50.w,
                                     ),
                                     SizedBox(
                                       width: 10.w,
@@ -109,8 +111,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ],
                             )
-                          : Center(
-                              child: CircularProgressIndicator(),
+                          : const Center(
+                              child: CircularProgressIndicator(
+                                color: kPrimarycolor,
+                              ),
                             ),
 
                       SizedBox(

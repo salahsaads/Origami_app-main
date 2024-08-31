@@ -31,12 +31,7 @@ void main() async {
   );
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then((_) {
-    runApp(DevicePreview(
-      enabled: true,
-      builder: (context) => const Origami(),
-    ));
-
-    // runApp(const Origami());
+    runApp(const Origami());
   });
 }
 
@@ -78,7 +73,9 @@ class CustomMaterialApp extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       // Show loading indicator or splash screen while checking login status
-                      return const CircularProgressIndicator();
+                      return CircularProgressIndicator(
+                        color: Color(0xff057314),
+                      );
                     } else {
                       if (snapshot.hasError) {
                         // Handle error

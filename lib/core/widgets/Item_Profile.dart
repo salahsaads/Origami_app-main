@@ -16,10 +16,14 @@ class Item_Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          iconname,
-          size: 40.sp,
-          color: kPrimarycolor,
+        CircleAvatar(
+          radius: 25.sp,
+          backgroundColor: Color(kSecondarycolor.value),
+          child: Icon(
+            iconname,
+            size: 40.sp,
+            color: kPrimarycolor,
+          ),
         ),
         SizedBox(
           width: 10.w,
@@ -31,7 +35,7 @@ class Item_Profile extends StatelessWidget {
           decoration: BoxDecoration(
               color: kSecondarycolor, borderRadius: BorderRadius.circular(10)),
           child: Text(
-            '${Title}',
+            Title,
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 24.sp,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:origami/core/Theme/constant.dart';
 
 import 'package:origami/features/product/presentation/cubits/get_categories_cubit/get_categories_cubit.dart';
 import 'package:origami/features/product/presentation/view/widgets/bottom_model_sheet.dart';
@@ -64,7 +65,10 @@ class _CategoryProductsState extends State<CategoryProducts> {
               ),
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child: CircularProgressIndicator(
+              color: kPrimarycolor,
+            ));
           }
         },
       ),

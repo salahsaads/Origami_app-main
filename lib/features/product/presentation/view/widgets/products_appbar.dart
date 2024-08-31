@@ -93,9 +93,11 @@ class _ProductAppBarState extends State<ProductAppBar> {
                             Text(
                               " ${profileModel!.name}",
                               style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontFamily: kFontfamily,
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 15.sp,
+                                fontFamily: kFontfamily,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                             Text(
                               '  مرحبا',

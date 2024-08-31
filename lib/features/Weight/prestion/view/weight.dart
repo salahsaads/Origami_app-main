@@ -106,7 +106,9 @@ class Weight extends StatelessWidget {
                                             width: 70,
                                             height: 45,
                                             child: FaIcon(
-                                                FontAwesomeIcons.whatsapp),
+                                              FontAwesomeIcons.whatsapp,
+                                              color: Colors.white,
+                                            ),
                                             decoration: BoxDecoration(
                                                 color: kPrimarycolor,
                                                 borderRadius:
@@ -122,7 +124,10 @@ class Weight extends StatelessWidget {
                                             alignment: Alignment.center,
                                             width: 70,
                                             height: 45,
-                                            child: Icon(Icons.facebook),
+                                            child: Icon(
+                                              Icons.facebook,
+                                              color: Colors.white,
+                                            ),
                                             decoration: BoxDecoration(
                                                 color: kPrimarycolor,
                                                 borderRadius:
@@ -139,7 +144,10 @@ class Weight extends StatelessWidget {
                                               alignment: Alignment.center,
                                               width: 70,
                                               height: 45,
-                                              child: Icon(Icons.phone),
+                                              child: Icon(
+                                                Icons.phone,
+                                                color: Colors.white,
+                                              ),
                                               decoration: BoxDecoration(
                                                   color: kPrimarycolor,
                                                   borderRadius:
