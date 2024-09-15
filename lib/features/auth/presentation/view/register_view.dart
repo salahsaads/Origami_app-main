@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/core/widgets/custom_itrro_appbar.dart';
 import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
 
@@ -12,35 +11,25 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-        listener: (context, state) {
-          if (state is AuthError) {
-            AwesomeDialog(
-              context: context,
-              dialogType: DialogType.error,
-              animType: AnimType.rightSlide,
-              title: state.title,
-              desc: state.message,
-              btnOkOnPress: () {},
-            ).show();
-          }
-        },
-        child: Scaffold(
-            body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const CustomIntoAppbar(text: 'إنشاء حساب جديد'),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 30,
-              ),
-              Image.asset(
-                'assets/images/logo.png',
-                width: MediaQuery.of(context).size.width / 3,
-                height: MediaQuery.of(context).size.width / 4,
-              ),
-              const RegisterForm()
-            ],
-          ),
-        )));
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: Scaffold(
+          body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const CustomIntoAppbar(text: 'إنشاء حساب جديد'),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 30,
+            ),
+            Image.asset(
+              'assets/images/logo.png',
+              width: MediaQuery.of(context).size.width / 3,
+              height: MediaQuery.of(context).size.width / 4,
+            ),
+            const RegisterForm()
+          ],
+        ),
+      )),
+    );
   }
 }

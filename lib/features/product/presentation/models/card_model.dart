@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
+import 'package:origami/features/favoriteScreen/data/add_fav.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/Theme/constant.dart';
@@ -91,9 +91,9 @@ class _CardModelState extends State<CardModel> {
                           });
                         } else if (fev == false || fev == null) {
                           prefs.setBool(widget.productname, true);
-                          Add_Fov(
+                          addFov(
                               name: widget.productname,
-                              Image: widget.image,
+                              image: widget.image,
                               point: widget.productpoints);
 
                           setState(() {

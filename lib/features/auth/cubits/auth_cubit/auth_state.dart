@@ -19,3 +19,7 @@ class AuthError extends AuthState {
 
   AuthError(this.title, this.message);
 }
+
+class AuthPhoneError extends AuthError {
+  AuthPhoneError(super.title, super.message);
+}

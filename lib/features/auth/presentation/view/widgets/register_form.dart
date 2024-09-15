@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
-import 'package:origami/features/auth/logic/authentication.dart';
 import 'package:origami/features/screens/loading_manger.dart';
 import 'package:origami/features/auth/presentation/view/login_view.dart';
 

@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 import 'package:origami/features/Nav/prestion/view/nav_bar.dart';
 import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
 import 'package:origami/features/auth/presentation/view/login_view.dart';
@@ -69,11 +68,12 @@ class CustomMaterialApp extends StatelessWidget {
           home: Builder(builder: (context) {
             return SplashScreen(
               nextScreen: FutureBuilder<bool>(
-                  future: checkLoginStatus(),
+                  future:
+                      BlocProvider.of<AuthCubit>(context).checkLoginStatus(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       // Show loading indicator or splash screen while checking login status
-                      return CircularProgressIndicator(
+                      return const CircularProgressIndicator(
                         color: Color(0xff057314),
                       );
                     } else {

@@ -25,16 +25,64 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Encryption encryptData = Encryption();
+  // Future<void> login({
+  //   required TextEditingController phone,
+  //   required TextEditingController pass,
+  //   required BuildContext context,
+  // }) async {
+  //   try {
+  //     emit(AuthLoading(true));
+  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .where('phoneNumber', isEqualTo: phone.text.trim())
+  //         .get();
+
+  //     if (querySnapshot.docs.isNotEmpty) {
+  //       DocumentSnapshot userSnapshot = querySnapshot.docs.first;
+  //       String storedPassword = userSnapshot['password'];
+
+  //       if (storedPassword == pass.text.trim()) {
+  //         await setLoginStatus(true);
+  //         await pref.setString('phoneNumber', phone.text.trim());
+  //         emit(AuthSuccess());
+  //         Navigator.pushAndRemoveUntil(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const HomeScreen(),
+  //             ),
+  //             (route) => false);
+  //       } else {
+  //         emit(AuthError("خطأ بالباسورد",
+  //             "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
+  //       }
+  //     } else {
+  //       emit(AuthError("المستخدم غير موجود",
+  //           "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
+  //     }
+  //   } catch (e) {
+  //     emit(AuthError("خطأ غير متوقع", e.toString()));
+  //   }
+  //   emit(AuthLoading(false));
+  // }
   Future<void> login({
     required TextEditingController phone,
     required TextEditingController pass,
     required BuildContext context,
   }) async {
+    String phoneNumber = phone.text.trim();
+
+    // Validate phone number
+    final egyptPhonePattern = RegExp(r'^01[0-25][0-9]{8}$');
+    if (!egyptPhonePattern.hasMatch(phoneNumber)) {
+      emit(AuthError("رقم الهاتف غير صحيح", "بالرجاء إدخال رقم هاتف  صحيح."));
+      return;
+    }
+
     try {
       emit(AuthLoading(true));
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .where('phoneNumber', isEqualTo: phone.text.trim())
+          .where('phoneNumber', isEqualTo: phoneNumber)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
@@ -43,14 +91,13 @@ class AuthCubit extends Cubit<AuthState> {
 
         if (storedPassword == pass.text.trim()) {
           await setLoginStatus(true);
-          await pref.setString('phoneNumber', phone.text.trim());
+          await pref.setString('phoneNumber', phoneNumber);
           emit(AuthSuccess());
           Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
-              ),
-              (route) => false);
+            context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
+            (route) => false,
+          );
         } else {
           emit(AuthError("خطأ بالباسورد",
               "بالرجاء التأكد من صحه البيانات المدخله واعاده المحاوله"));
@@ -62,9 +109,54 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (e) {
       emit(AuthError("خطأ غير متوقع", e.toString()));
     }
+
     emit(AuthLoading(false));
   }
 
+  // Future<void> register({
+  //   required String name,
+  //   required String phone,
+  //   required String pass,
+  //   required String location,
+  //   required BuildContext context,
+  // }) async {
+  //   // Regex pattern for a strong password
+  //   emit(AuthLoading(true));
+  //   final strongPasswordPattern = RegExp(
+  //       r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+
+  //   // Check if the password is strong
+  //   if (!strongPasswordPattern.hasMatch(pass.trim())) {
+  //     emit(AuthError("كلمة المرور ضعيفة",
+  //         "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، منها حرف كبير، حرف صغير، رقم ورمز خاص."));
+  //     emit(AuthLoading(false));
+
+  //     return;
+  //   }
+
+  //   try {
+  //     await FirebaseFirestore.instance.collection('users').doc(phone).set({
+  //       'name': name,
+  //       'phoneNumber': phone,
+  //       'password': pass,
+  //       'points': 0,
+  //       'location': location,
+  //     });
+
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     await prefs.setString('phoneNumber', phone);
+  //     await setLoginStatus(true);
+  //     emit(AuthSuccess());
+  //     Navigator.pushAndRemoveUntil(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => const HomeScreen(),
+  //         ),
+  //         (route) => false);
+  //   } catch (e) {
+  //     emit(AuthError("خطأ غير متوقع", e.toString()));
+  //   }
+  // }
   Future<void> register({
     required String name,
     required String phone,
@@ -72,39 +164,36 @@ class AuthCubit extends Cubit<AuthState> {
     required String location,
     required BuildContext context,
   }) async {
-    // Regex pattern for a strong password
-    emit(AuthLoading(true));
-    final strongPasswordPattern = RegExp(
-        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+    String phoneNumber = phone.trim();
 
-    // Check if the password is strong
-    if (!strongPasswordPattern.hasMatch(pass.trim())) {
-      emit(AuthError("كلمة المرور ضعيفة",
-          "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، منها حرف كبير، حرف صغير، رقم ورمز خاص."));
-      emit(AuthLoading(false));
-
+    // Validate phone number
+    final egyptPhonePattern = RegExp(r'^01[0-25][0-9]{8}$');
+    if (!egyptPhonePattern.hasMatch(phoneNumber)) {
+      emit(AuthError("رقم الهاتف غير صحيح", "بالرجاء إدخال رقم هاتف  صحيح."));
       return;
     }
 
     try {
-      await FirebaseFirestore.instance.collection('users').doc(phone).set({
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(phoneNumber)
+          .set({
         'name': name,
-        'phoneNumber': phone,
+        'phoneNumber': phoneNumber,
         'password': pass,
         'points': 0,
         'location': location,
       });
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('phoneNumber', phone);
+      await prefs.setString('phoneNumber', phoneNumber);
       await setLoginStatus(true);
       emit(AuthSuccess());
       Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
-          (route) => false);
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+        (route) => false,
+      );
     } catch (e) {
       emit(AuthError("خطأ غير متوقع", e.toString()));
     }

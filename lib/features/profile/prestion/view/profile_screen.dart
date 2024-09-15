@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:origami/bussinus_logic/authentiacation/authentication.dart';
 import 'package:origami/core/Theme/constant.dart';
 import 'package:origami/core/widgets/Item_Profile.dart';
 import 'package:origami/core/widgets/custom_button.dart';
+import 'package:origami/features/auth/cubits/auth_cubit/auth_cubit.dart';
+
 import 'package:origami/features/profile/data/network.dart';
 import 'package:origami/features/profile/prestion/view_model/profile_model.dart';
 
@@ -124,7 +125,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       CustomButton(
                         text: 'تسجيل خروج',
                         ontap: () {
-                          logout(context: context);
+                          BlocProvider.of<AuthCubit>(context)
+                              .logout(context: context);
                         },
                       ),
                       SizedBox(
