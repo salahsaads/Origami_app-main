@@ -27,27 +27,18 @@ class _ProductAppBarState extends State<ProductAppBar> {
   QuerySnapshot? querySnapshot2;
 
   String? userphone;
-  Future<String> getuserPoints() async {
-    userphone = pref.getString('phoneNumber');
-    querySnapshot2 = await FirebaseFirestore.instance
-        .collection('Product_In_Car')
-        .where('user_number', isEqualTo: userphone)
-        .get();
-
-    setState(() {});
-    return 'yes';
-  }
 
   ProfileModel? profileModel;
 
   getdata() async {
     profileModel = await FirbaseGet.getData();
+    userphone = pref.getString('phoneNumber');
+
     setState(() {});
   }
 
   @override
   void initState() {
-    getuserPoints();
     getdata();
     super.initState();
   }
@@ -116,10 +107,30 @@ class _ProductAppBarState extends State<ProductAppBar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ShoppingCart(
-                    userphone: userphone,
-                    points: widget.point!,
-                    querySnapshot2: querySnapshot2),
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('Product_In_Car')
+                      .where('user_number', isEqualTo: userphone)
+                      .snapshots(), // Use snapshots() instead of get()
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Something went wrong');
+                    }
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(); // Loading indicator
+                    }
+
+                    // Access the querySnapshot data
+                    var querySnapshot2 = snapshot.data;
+
+                    return ShoppingCart(
+                      userphone: userphone,
+                      points: widget.point!,
+                      querySnapshot2: querySnapshot2,
+                    );
+                  },
+                ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
