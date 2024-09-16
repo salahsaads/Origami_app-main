@@ -86,23 +86,6 @@ class _ProductsState extends State<Products> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     Navigator.push(
-                            //         context,
-                            //         MaterialPageRoute(
-                            //             builder: (context) => AllProdoct(
-                            //                 collectionpath:
-                            //                     '${categoryName[index].id}')));
-                            //   },
-                            //   child: Text(' شاهد الكل ',
-                            //       style: TextStyle(
-                            //         fontSize: 20.sp,
-                            //         height: 0.2,
-                            //         color: kPrimarycolor,
-                            //         fontFamily: kFontfamily,
-                            //       )),
-                            // ),
                             SizedBox(
                               height: 10.h,
                             ),
@@ -129,7 +112,10 @@ class _ProductsState extends State<Products> {
                     ),
                   ),
                 ))
-            : const Expanded(flex: 11, child: ShimmerLoading())
+            : const Expanded(flex: 11, child: ShimmerLoading()),
+        SizedBox(
+          height: 60.h,
+        )
       ]),
     );
   }

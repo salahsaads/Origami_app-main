@@ -18,15 +18,6 @@ class Weight extends StatelessWidget {
   const Weight({super.key});
 // Replace with actual phone number
 
-  Future<void> _launchFacebookProfile() async {
-    const facebookProfileUrl = facebook;
-    if (await canLaunchUrl(Uri.parse(facebookProfileUrl))) {
-      await launchUrl(Uri.parse(facebookProfileUrl));
-    } else {
-      throw 'Could not launch $facebookProfileUrl';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -87,7 +78,9 @@ class Weight extends StatelessWidget {
                                         GestureDetector(
                                           onTap: () async {
                                             final String url =
-                                                'https://wa.me/$whatsapp?text=${Uri.encodeComponent('  ❤️${Cubit.sumall} الاجمالي ${DataGloble.KProdect}  السلام عليكم  اريد التواصل معكم لاستبدال خورده ')}';
+                                                'https://wa.me/$whatsapp?text=${Uri.encodeComponent(
+                                              'السلام عليكم  اريد التواصل معكم لاستبدال كميه من الخرده ${DataGloble.KProdect}  الاجمالي ${Cubit.sumall}❤️',
+                                            )}';
                                             print(
                                                 'Attempting to launch URL: $url');
                                             try {
@@ -118,20 +111,21 @@ class Weight extends StatelessWidget {
                                         // phone
                                         GestureDetector(
                                           onTap: () {
-                                            _launchFacebookProfile();
+                                            launchFacebookProfile();
                                           },
                                           child: Container(
                                             alignment: Alignment.center,
                                             width: 70,
                                             height: 45,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              color: kPrimarycolor,
+                                            ),
                                             child: Icon(
                                               Icons.facebook,
                                               color: Colors.white,
                                             ),
-                                            decoration: BoxDecoration(
-                                                color: kPrimarycolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
                                           ),
                                         ),
                                         Padding(

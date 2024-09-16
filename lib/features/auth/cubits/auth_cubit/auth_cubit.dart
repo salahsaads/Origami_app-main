@@ -157,6 +157,47 @@ class AuthCubit extends Cubit<AuthState> {
   //     emit(AuthError("خطأ غير متوقع", e.toString()));
   //   }
   // }
+  // Future<void> register({
+  //   required String name,
+  //   required String phone,
+  //   required String pass,
+  //   required String location,
+  //   required BuildContext context,
+  // }) async {
+  //   String phoneNumber = phone.trim();
+
+  //   // Validate phone number
+  //   final egyptPhonePattern = RegExp(r'^01[0-25][0-9]{8}$');
+  //   if (!egyptPhonePattern.hasMatch(phoneNumber)) {
+  //     emit(AuthError("رقم الهاتف غير صحيح", "بالرجاء إدخال رقم هاتف  صحيح."));
+  //     return;
+  //   }
+
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(phoneNumber)
+  //         .set({
+  //       'name': name,
+  //       'phoneNumber': phoneNumber,
+  //       'password': pass,
+  //       'points': 0,
+  //       'location': location,
+  //     });
+
+  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+  //     await prefs.setString('phoneNumber', phoneNumber);
+  //     await setLoginStatus(true);
+  //     emit(AuthSuccess());
+  //     Navigator.pushAndRemoveUntil(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const HomeScreen()),
+  //       (route) => false,
+  //     );
+  //   } catch (e) {
+  //     emit(AuthError("خطأ غير متوقع", e.toString()));
+  //   }
+  // }
   Future<void> register({
     required String name,
     required String phone,
@@ -169,11 +210,26 @@ class AuthCubit extends Cubit<AuthState> {
     // Validate phone number
     final egyptPhonePattern = RegExp(r'^01[0-25][0-9]{8}$');
     if (!egyptPhonePattern.hasMatch(phoneNumber)) {
-      emit(AuthError("رقم الهاتف غير صحيح", "بالرجاء إدخال رقم هاتف  صحيح."));
+      emit(AuthError("رقم الهاتف غير صحيح", "بالرجاء إدخال رقم هاتف  صحيح"));
       return;
     }
 
     try {
+      // Check if the phone number already exists in Firestore
+      QuerySnapshot existingUser = await FirebaseFirestore.instance
+          .collection('users')
+          .where('phoneNumber', isEqualTo: phoneNumber)
+          .get();
+
+      if (existingUser.docs.isNotEmpty) {
+        emit(AuthError(
+          "رقم الهاتف المدخل مستخدم بالفعل",
+          "بالرجاء إدخال رقم هاتف اخر",
+        ));
+        return;
+      }
+
+      // If the phone number doesn't exist, proceed with registration
       await FirebaseFirestore.instance
           .collection('users')
           .doc(phoneNumber)
@@ -189,6 +245,8 @@ class AuthCubit extends Cubit<AuthState> {
       await prefs.setString('phoneNumber', phoneNumber);
       await setLoginStatus(true);
       emit(AuthSuccess());
+
+      // Navigate to HomeScreen after successful registration
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),

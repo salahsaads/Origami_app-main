@@ -23,7 +23,7 @@ class ShoppingCart extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Car_screen(
+                builder: (context) => CarScreen(
                       number: userphone,
                       allpoint: points * 1.0,
                     )));
